@@ -3,6 +3,7 @@ import axios from 'axios';
 
 /**
  * Displays a random motivatioal quote from our API
+ * 
  */
 class MotivationalQuote extends Component {
   state = {
