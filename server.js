@@ -28,3 +28,5 @@ db.sequelize.sync().then(function() {
     console.log(`🌎 ==> API Server now listening on PORT ${PORT}!`);
   });
 });
+
+//TEST Sachiko
