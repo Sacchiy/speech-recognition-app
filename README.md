@@ -78,3 +78,61 @@ Then add navigation Links to these pages.
 ## Deployment (Heroku)
 
 To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+
+
+
+
+----------
+class App extends Component {
+  render() {
+
+    return (
+      <Router>
+        <Route exact path="/results" component={Results}/>
+          <Navbar/> 
+              <Link to="/results"> Results</Link> <Link to="/home"> Home</Link>
+                <Body/>
+                    <FileUploadForm/>
+                      <Results/>
+                          <ResultsDiv>
+                              <Transcript/>
+                              <BarChart/>
+                              <FilterForm/>  
+                          </ResultsDiv>
+                      <Reuslt/>
+                <Body/>        
+      </Router>      
+    );
+
+  }
+}
+
+
+//  FULL PRODUCT 
+class App extends Component {
+  render() {
+
+    return (
+      <Router>
+        <Route exact path="/login" component={Login}/>
+        <Route exact path="/results" component={Results}/>
+        <Route exact path="/about" component={About}/>
+          <Navbar/> 
+              <Link to="/results"> Results</Link> <Link to="/home"> Home</Link> <Link to="/about">About</Link>
+                <Body/>
+                    <FileUploadForm/>
+                      <Results/>
+                          <ResultsDiv>
+                              <Transcript/>
+                              <BarChart/>
+                              <FilterForm/>  
+                          </ResultsDiv>
+                      <Reuslt/>
+                <Body/>    
+          <Footer/>  
+          <About/>  
+      </Router>      
+    );
+
+  }
+}

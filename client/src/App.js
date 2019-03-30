@@ -6,6 +6,9 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import logo from "./logo.svg";
 import "./App.css";
+import Button from '@material-ui/core/Button';
+import ButtonAppBar from "./components/navbar";
+import ComposedChart from "./components/barChart";
 
 
 /**
@@ -15,12 +18,21 @@ class App extends Component {
   render() {
     return (
       <Router>
+
+      <ButtonAppBar/>
+
       
       <Route exact path="/home" component={Home}/>
       <Link to="/home">Home</Link>
 
       <Route exact path="/results" component={Results}/>
       <Link to="/results">Results</Link>
+
+      <Button variant="contained" color="primary">
+      Hello World
+    </Button>
+
+      <ComposedChart/>
 
       <div className="App">
         <div className="App-header">
