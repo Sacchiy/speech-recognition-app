@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import MotivationalQuote from "./components/MotivationalQuote";
+//import MotivationalQuote from "./components/MotivationalQuote";
 import Home from "./pages/home";
 import Results from "./pages/results";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
@@ -7,25 +7,8 @@ import {Link} from 'react-router-dom';
 import "./App.css";
 import ButtonAppBar from "./components/navbar";
 import BarChart from "./components/barChart";
-//import WordCount from "./components/wordCount";
 import TextFields from "./components/filterBox";
 
-
-
-
-const data = [
-  {
-    name: 'Data 2',  pv: 800, 
-  },
-  {
-    name: 'Page B',  pv: 967, 
-  },
-  {
-    name: 'Page C',  pv: 1098,
-  }
-];
-
-  
 
 /**
  * The main App component that holds our whole React app
@@ -37,17 +20,18 @@ class App extends Component {
     data: []
   };
 
+  //Called from within <TextFields/> component provides words in input text box
   updateResults = (wordstoCount) => {
     
     this.setState({
-      words: wordstoCount,
-      data: data
+      words: wordstoCount
     });
 
     this.wordCount("this is this is on test on on car car car car 3 3",wordstoCount.toString().trim())
 
   }
 
+  //Receives a string with transcript and string with words to search
   wordCount = (text, words) => {
 
     let counter = 0;
@@ -71,8 +55,8 @@ class App extends Component {
     
   }
 
+  //takes wordCount results creates object and updates state to refresh chart
   createObject = (result,searchTerms) => {
-    console.log("This is result : ", result);
     
     let data = [];
 
@@ -82,23 +66,10 @@ class App extends Component {
       })
     }
 
-    
-
-    // result.forEach(element => {
-    //    console.log(element)
-    //    data.push({
-    //     name: searchTerms[1],  pv: element 
-    //     })
-    // });
-
-    console.log(data);
-
-    this.setState({
-      
+    //Update state to refresh chart
+    this.setState({      
       data: data
-    });
-  
-    
+    });    
   }
 
   
@@ -107,24 +78,16 @@ class App extends Component {
     return (
       <Router>
 
-      <ButtonAppBar/>
-      <MotivationalQuote />
+        <ButtonAppBar/>
       
-      <Route exact path="/home" component={Home}/>
-      <Link to="/home">Home</Link>
+        <Route exact path="/home" component={Home}/>
+        <Link to="/home">Home</Link>
 
-      <Route exact path="/results" component={Results}/>
-      <Link to="/results">Results</Link>
+        <Route exact path="/results" component={Results}/>
+        <Link to="/results">Results</Link>
 
-    
-      <TextFields updateResults={this.updateResults}/>
-      
-
-      <BarChart data={this.state.data}  />
-
-      
-       
-       
+        <TextFields updateResults={this.updateResults}/>
+        <BarChart data={this.state.data}  />
 
       </Router>
     );
