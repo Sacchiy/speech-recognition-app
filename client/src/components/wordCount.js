@@ -53,7 +53,7 @@ class wordCount extends Component {
         
         let words = this.props.words.toString()
         words.split(" ");
-        console.log('Input to word count function:', words);
+        //console.log('Input to word count function:', words);
         this.wordCount("this is a text bunch of test text is text", words)
         
         

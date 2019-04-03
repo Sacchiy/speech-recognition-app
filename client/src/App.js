@@ -7,7 +7,7 @@ import {Link} from 'react-router-dom';
 import "./App.css";
 import ButtonAppBar from "./components/navbar";
 import BarChart from "./components/barChart";
-import WordCount from "./components/wordCount";
+//import WordCount from "./components/wordCount";
 import TextFields from "./components/filterBox";
 
 
@@ -37,14 +37,15 @@ class App extends Component {
     data: []
   };
 
-  updateResults = (result) => {
+  updateResults = (wordstoCount) => {
     
     this.setState({
-      words: result,
-      data: data//this.wordCount('this text text is test', result)
+      words: wordstoCount,
+      data: data
     });
 
-    console.log(this.wordCount('this text text is test', result));
+    this.wordCount("this is this is on test on on car car car car 3 3",wordstoCount.toString().trim())
+
   }
 
   wordCount = (text, words) => {
@@ -56,7 +57,7 @@ class App extends Component {
 
     for(let k=0;k<searchTerms.length;k++){ 
         for(let i=0; i<textArray.length; i++){
-            if(textArray[i]==searchTerms[k]){
+            if(textArray[i]===searchTerms[k]){
                 counter++;
             }
         }
@@ -64,20 +65,43 @@ class App extends Component {
         counter = 0;
     }
     
+    this.createObject(result,searchTerms)
+    
     return result;
     
   }
 
-  createObject = (array) => {
+  createObject = (result,searchTerms) => {
+    console.log("This is result : ", result);
     
-    array.forEach(element => {
-      console.log(element)
+    let data = [];
+
+    for(let i=0;i<searchTerms.length;i++){
+      data.push({
+        name: searchTerms[i],  pv: result[i] 
+      })
+    }
+
+    
+
+    // result.forEach(element => {
+    //    console.log(element)
+    //    data.push({
+    //     name: searchTerms[1],  pv: element 
+    //     })
+    // });
+
+    console.log(data);
+
+    this.setState({
+      
+      data: data
     });
+  
     
   }
 
-  //this.createObject([4,5,6]);
-
+  
 
   render() {
     return (
