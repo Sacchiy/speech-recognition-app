@@ -10,10 +10,10 @@ class API extends Component {
         const accessToken = "02nbdpQX3gFagcjmTKKZVAdd21WAfcxbedkhbx8GQB_qRNZJTjm_tY5FEhyouEEorLpob9PMGbnS1kPsVTH9u2m5ZayLc";
         let client = new RevAiApiClient(accessToken);
 
-        let job = await client.submitJobLocalFile(props.mp3File);
+        // let job = await client.submitJobLocalFile(props.mp3File);
 
         // If we upload file by URL
-        // let job = var job = await client.submitJobUrl("https://www.rev.ai/FTC_Sample_1.mp3");
+        let job = await client.submitJobUrl("https://www.rev.ai/FTC_Sample_1.mp3");
 
         // let jobDetails = await client.getJobDetails(job.id);
 
