@@ -1,19 +1,9 @@
-import React from "react";
-import API from '../RevAPI';
 import React, { Component } from "react";
 
-class Home extends Components {
-  state = {
-    text: '',
-    mp3File: ''
-  }
+function Home() {
 
-  submitJob = mp3File => {
-    this.setState()
-    API.submitJob(mp3File)
-  }
 
-  render() {
+
   return (
     <div>
       <h1>Home</h1>
@@ -27,7 +17,7 @@ class Home extends Components {
       
       
     </div>
-  )};
+  );
 }
 
 export default Home;
