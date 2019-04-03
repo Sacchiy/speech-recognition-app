@@ -4,37 +4,18 @@ import {
   Legend,
 } from 'recharts';
 
-const data = [
-  {
-    name: 'Page A',  pv: 800, 
-  },
-  {
-    name: 'Page B',  pv: 967, 
-  },
-  {
-    name: 'Page C',  pv: 1098,
-  },
-  {
-    name: 'Page D',  pv: 1200, 
-  },
-  {
-    name: 'Page E',  pv: 1108, 
-  },
-  {
-    name: 'Page F',  pv: 680,
-  },
-];
 
-export default class Example extends PureComponent {
+export default class BarChart extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/shjsn5su/';
 
   render() {
+    
     return (
       <ComposedChart
         layout="vertical"
         width={500}
         height={400}
-        data={data}
+        data={this.props.data}
         margin={{
           top: 20, right: 20, bottom: 20, left: 20,
         }}
