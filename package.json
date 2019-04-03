@@ -24,6 +24,7 @@
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "mysql2": "^1.6.5",
+    "revai-node-sdk": "^1.1.0",
     "sequelize": "^5.2.6"
   }
 }
