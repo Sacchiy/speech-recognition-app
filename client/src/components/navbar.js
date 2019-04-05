@@ -33,7 +33,7 @@ function ButtonAppBar(props) {
           <Button color="inherit" onClick={() => props.handlePageChange("Home")}>Home</Button>
           <Button color="inherit" onClick={() => props.handlePageChange("Results")}>Results</Button>
           <Button color="inherit" onClick={() => props.handlePageChange("Signup")}>Signup</Button>
-          <Button color="inherit" onClick={() => props.handlePageChange("Signin")}>Signin</Button>
+          <Button color="inherit" onClick={() => props.handlePageChange("Login")}>Login</Button>
         </Toolbar>  
       </AppBar>
     </div>
