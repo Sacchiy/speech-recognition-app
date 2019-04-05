@@ -99,7 +99,7 @@ class App extends Component {
     }else if (this.state.currentPage === "Results") {
       return (
         <div>
-          <TextFields updateResults={this.updateResults}/>
+          <TextFields updateResults={this.updateResults} />
           <BarChart data={this.state.data}  />
         </div>
       )
@@ -116,6 +116,7 @@ class App extends Component {
         />
 
         {this.decideLocation()}
+
 
       </Router>
     );

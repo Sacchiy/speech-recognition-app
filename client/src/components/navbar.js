@@ -7,6 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import { Link } from 'react-router-dom';
 
 const styles = {
   root: {
@@ -34,6 +35,8 @@ function ButtonAppBar(props) {
           <Button color="inherit" onClick={() => props.handlePageChange("Results")}>Results</Button>
           <Button color="inherit" onClick={() => props.handlePageChange("Signup")}>Signup</Button>
           <Button color="inherit" onClick={() => props.handlePageChange("Login")}>Login</Button>
+          {/* <Link to="/Results2">Results2</Link>
+          <Link to="/Signup2">Signup2</Link> */}
         </Toolbar>  
       </AppBar>
     </div>

@@ -46,6 +46,7 @@ const styles = theme => ({
 });
 
 function SignUp(props) {
+  
   const { classes } = props;
 
   return (
