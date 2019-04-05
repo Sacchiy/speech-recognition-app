@@ -8,7 +8,8 @@ import ButtonAppBar from "./components/navbar";
 import BarChart from "./components/barChart";
 import TextFields from "./components/filterBox";
 import Signup from "./pages/signup";
-import Signin from "./pages/signin";
+import Login from "./pages/signin";
+
 
 
 /**
@@ -89,10 +90,10 @@ class App extends Component {
           <Signup/>
         </div>
       )
-    } else if (this.state.currentPage === "Signin") {
+    } else if (this.state.currentPage === "Login") {
       return (
         <div>
-          <Signin/>
+          <Login/>
         </div>
       )
     }else if (this.state.currentPage === "Results") {
