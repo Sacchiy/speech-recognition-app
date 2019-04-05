@@ -7,6 +7,8 @@ import "./App.css";
 import ButtonAppBar from "./components/navbar";
 import BarChart from "./components/barChart";
 import TextFields from "./components/filterBox";
+import Signup from "./pages/signup";
+import Signin from "./pages/signin";
 
 
 /**
@@ -80,19 +82,27 @@ class App extends Component {
   //Comes from the main render() 
   decideLocation = () => {
     if (this.state.currentPage === "Home") {
-      
       return <Home/>;
-      
-    } else if (this.state.currentPage === "Results") {
-      
+    } else if (this.state.currentPage === "Signup") {
+      return (
+        <div>
+          <Signup/>
+        </div>
+      )
+    } else if (this.state.currentPage === "Signin") {
+      return (
+        <div>
+          <Signin/>
+        </div>
+      )
+    }else if (this.state.currentPage === "Results") {
       return (
         <div>
           <TextFields updateResults={this.updateResults}/>
           <BarChart data={this.state.data}  />
         </div>
       )
-
-    }
+    } 
   }
 
   render() {
