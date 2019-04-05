@@ -30,10 +30,8 @@ function ButtonAppBar(props) {
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
-            News
-          </Typography>
-          <Button color="inherit">Login</Button>
+          <Button color="inherit" onClick={() => props.handlePageChange("Home")}>Home</Button>
+          <Button color="inherit" onClick={() => props.handlePageChange("Results")}>Results</Button>
         </Toolbar>
       </AppBar>
     </div>
@@ -45,3 +43,8 @@ ButtonAppBar.propTypes = {
 };
 
 export default withStyles(styles)(ButtonAppBar);
+
+
+{/* <Typography variant="h6" color="inherit" className={classes.grow} >
+            News
+    </Typography> */}
