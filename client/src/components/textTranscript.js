@@ -2,20 +2,26 @@ import API from '../RevAPI';
 
 import React, { Component } from "react";
 
-class TranscribedText extends Components {
+class TranscribedText extends Component {
 
 state = {
-    text: '',
-    mp3File: ''
+    text: 'hrshsfghs'
   }
 
-  submitJob = mp3File => {
-    this.setState()
-    API.submitJob(mp3File)
+  submit = () => {
+    console.log('RAN')
+    var transcript = API.search()
+    // console.log (transcript)
+    this.setState({ text: transcript })
   }
   
   render() {
-      return
+      return (
+          <div>
+            <button></button>
+          {this.state.text}
+          </div>
+      )
   }
 }
 

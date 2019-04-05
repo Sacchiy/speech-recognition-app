@@ -1,4 +1,5 @@
 import React from "react";
+import TranscribedText from "../components/textTranscript";
 
 function Results() {
   return (
@@ -11,6 +12,7 @@ function Results() {
         semper imperdiet. Praesent euismod mi justo, faucibus scelerisque risus cursus in. Sed
         rhoncus mollis diam, sit amet facilisis lectus blandit at.
       </p>
+      <TranscribedText />
     </div>
   );
 }
