@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 //import MotivationalQuote from "./components/MotivationalQuote";
 import Home from "./pages/home";
-import Results from "./pages/results";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import "./App.css";
@@ -17,7 +16,8 @@ class App extends Component {
 
   state = {
     words: [],
-    data: []
+    data: [],
+    currentPage: "Home"
   };
 
   //Called from within <TextFields/> component provides words in input text box
@@ -72,22 +72,39 @@ class App extends Component {
     });    
   }
 
-  
+  //Part of Routing. Sent to ButtonAppBar component to get the page and update state
+  handlePageChange = page => {
+    this.setState({ currentPage: page });
+  };
+
+  //Comes from the main render() 
+  decideLocation = () => {
+    if (this.state.currentPage === "Home") {
+      
+      return <Home/>;
+      
+    } else if (this.state.currentPage === "Results") {
+      
+      return (
+        <div>
+          <TextFields updateResults={this.updateResults}/>
+          <BarChart data={this.state.data}  />
+        </div>
+      )
+
+    }
+  }
 
   render() {
     return (
       <Router>
 
-        <ButtonAppBar/>
-      
-        <Route exact path="/home" component={Home}/>
-        <Link to="/home">Home</Link>
+        <ButtonAppBar 
+            currentPage={this.state.currentPage}
+            handlePageChange={this.handlePageChange}
+        />
 
-        <Route exact path="/results" component={Results}/>
-        <Link to="/results">Results</Link>
-
-        <TextFields updateResults={this.updateResults}/>
-        <BarChart data={this.state.data}  />
+        {this.decideLocation()}
 
       </Router>
     );
@@ -95,3 +112,11 @@ class App extends Component {
 }
 
 export default App;
+
+
+
+{/* <Route exact path="/home" component={Home}/>
+        <Link to="/home">Home</Link>
+
+        <Route exact path="/results" component={Results}/>
+        <Link to="/results">Results</Link> */}
