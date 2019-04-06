@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import MotivationalQuote from "./components/MotivationalQuote";
+import MotivationalQuote from "./components/MotivationalQuote";
 import Home from "./pages/home";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
@@ -12,6 +12,7 @@ import Login from "./pages/signin";
 
 
 
+
 /**
  * The main App component that holds our whole React app
  */
@@ -20,7 +21,8 @@ class App extends Component {
   state = {
     words: [],
     data: [],
-    currentPage: "Home"
+    currentPage: "Home",
+    transcript: []
   };
 
   //Called from within <TextFields/> component provides words in input text box
@@ -101,6 +103,7 @@ class App extends Component {
         <div>
           <TextFields updateResults={this.updateResults} />
           <BarChart data={this.state.data}  />
+          <MotivationalQuote transcript = {this.getTranscript}/>
         </div>
       )
     } 
