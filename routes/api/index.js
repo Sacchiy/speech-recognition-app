@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const motivationRoutes = require("./motivation");
-
+const signup = require("./signup");
 /**
  * API routes 
  * Each call of `router.use` here defines a new sub path under `/api` that uses a new router.
@@ -13,5 +13,8 @@ const motivationRoutes = require("./motivation");
 
 // contains routes for `/api/motivation/`
 router.use("/motivation", motivationRoutes);
+
+// contains routes for `/api/signup/`
+router.use("/signup", signup);
 
 module.exports = router;

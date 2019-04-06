@@ -3,6 +3,7 @@ const router = require("express").Router();
 const apiRoutes = require("./api");
 
 // API Routes
+// Adds the prefix /api to all the routes defined in ./api folder ?
 router.use("/api", apiRoutes);
 
 // If no API routes are hit, send the React app
