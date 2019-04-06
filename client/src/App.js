@@ -26,13 +26,6 @@ class App extends Component {
     transcript: []
   };
 
-  getTranscript = () => {
-    axios.get("/api/daily")
-      .then(response => {
-        this.setState({ transcript: response.data });
-        return this.state.transcript
-      });
-  }
 
   //Called from within <TextFields/> component provides words in input text box
   updateResults = (wordstoCount) => {
@@ -94,7 +87,12 @@ class App extends Component {
   //Comes from the main render() 
   decideLocation = () => {
     if (this.state.currentPage === "Home") {
-      return <Home/>;
+      return (
+        <div>
+          {/* <Home/> */}
+          <MotivationalQuote />
+        </div>
+        );
     } else if (this.state.currentPage === "Signup") {
       return (
         <div>
@@ -112,7 +110,7 @@ class App extends Component {
         <div>
           <TextFields updateResults={this.updateResults} />
           <BarChart data={this.state.data}  />
-          <MotivationalQuote transcript = {this.getTranscript}/>
+          
         </div>
       )
     } 

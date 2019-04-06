@@ -8,43 +8,57 @@ import axios from 'axios';
 class MotivationalQuote extends Component {
   state = {
     transcript: ['fdgadfg'],
+    audioJobID: "",
+    audioJobStatus: "in_progress"
   };
 
-  /**
-   * When the component is very first displayed on the webpage
-   */
-  // componentDidMount() {
-  //   axios.get("/api/daily")
-  //     .then(response => {
-  //       console.log(response)
-  //       this.setState({ transcript: response.data });
-        
-  //       // Pick a random quote and set the timer to pick another one later
-  //     });
-  // }
-
-
-  getTranscript = () => {
-    axios.get("/api/daily")
+  submitAudioJob = () => {
+    axios.get("/api/motivation")
       .then(response => {
-        console.log(response)
-        this.setState({ transcript: response.data });
-        
-        // Pick a random quote and set the timer to pick another one later
+        console.log('This is MotivationalQuote Component: ')
+        console.log('Response.data.id: ', response.data.id); 
+        console.log('Response.data.status: ', response.data.status); 
+        this.setState({ 
+            audioJobID: response.data.id,
+            audioJobStatus: response.data.status
+         });
       });
   }
 
-  /**
-   * Called when the component is first displayed, and when the props or state changes
-   */
+  componentDidMount(){
+    this.submitAudioJob();
+  }
+
+  requestAudioJobStatus = () => {
+    axios.get("/api/motivation/requestAudioJobStatus" )
+      .then(response => {
+        console.log('This is requestAudioJobStatus Function: ')
+        console.log('Response.data.status: ', response.data.status); 
+      });
+  }
+
+  getTranscriptText = () => {
+    axios.get("/api/motivation/getTranscriptText")
+      .then(response => {
+        console.log('This is getTranscript Function: ')
+        console.log('Response: ', response.data); 
+      });
+    
+  }
+
+  
+
+  //zTHdxVpTraHX
+ 
   render() {
     return (
       <span>
-        {/* {this.getTranscript()} */}
-        <div>{this.state.trancript}</div>
         <div>HELLO</div>
-        <script>{console.log(this.state.transcript)}</script>
-        {/* <script>{console.log(this.getTranscipt())}</script> */}
+        <p> Audio Job ID: {this.state.audioJobID} </p>
+        <p> Audio Job Status:{this.state.audioJobStatus} </p>
+        {/* {this.requestAudioJobStatus(this.state.audioJobID)} */}
+        {this.requestAudioJobStatus()};
+        {this.getTranscriptText()}
       </span>
     );
   }
