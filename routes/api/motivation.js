@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const motivationController = require("../../controllers/motivationController");
-const db = require("../../models");
+const db = require("../../models"); 
 
 const { RevAiApiClient } = require('revai-node-sdk');
 
