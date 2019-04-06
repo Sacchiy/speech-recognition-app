@@ -22,11 +22,10 @@ class MotivationalQuote extends Component {
   //       // Pick a random quote and set the timer to pick another one later
   //     });
   // }
-  console() {console.log(this.state.transcript)}
 
 
   getTranscript = () => {
-    axios.get("/api/motivation")
+    axios.get("/api/daily")
       .then(response => {
         console.log(response)
         this.setState({ transcript: response.data });
@@ -41,8 +40,8 @@ class MotivationalQuote extends Component {
   render() {
     return (
       <span>
-        {this.getTranscript()}
-        {this.state.trancript}
+        {/* {this.getTranscript()} */}
+        <div>{this.state.trancript}</div>
         <div>HELLO</div>
         <script>{console.log(this.state.transcript)}</script>
         {/* <script>{console.log(this.getTranscipt())}</script> */}
