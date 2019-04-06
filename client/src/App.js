@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import MotivationalQuote from "./components/MotivationalQuote";
+import MotivationalQuote from "./components/MotivationalQuote";
 import Home from "./pages/home";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
@@ -9,6 +9,8 @@ import BarChart from "./components/barChart";
 import TextFields from "./components/filterBox";
 import Signup from "./pages/signup";
 import Login from "./pages/signin";
+import axios from 'axios';
+
 
 
 
@@ -20,8 +22,17 @@ class App extends Component {
   state = {
     words: [],
     data: [],
-    currentPage: "Home"
+    currentPage: "Home",
+    transcript: []
   };
+
+  getTranscript = () => {
+    axios.get("/api/daily")
+      .then(response => {
+        this.setState({ transcript: response.data });
+        return this.state.transcript
+      });
+  }
 
   //Called from within <TextFields/> component provides words in input text box
   updateResults = (wordstoCount) => {
@@ -101,12 +112,14 @@ class App extends Component {
         <div>
           <TextFields updateResults={this.updateResults} />
           <BarChart data={this.state.data}  />
+          <MotivationalQuote transcript = {this.getTranscript}/>
         </div>
       )
     } 
   }
 
   render() {
+  
     return (
       <Router>
 

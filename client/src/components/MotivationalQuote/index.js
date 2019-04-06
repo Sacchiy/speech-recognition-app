@@ -7,47 +7,31 @@ import axios from 'axios';
  */
 class MotivationalQuote extends Component {
   state = {
-    quotes: [],
-    chosenQuote: "",
-    displayedQuote: ""
+    transcript: ['fdgadfg'],
   };
-
-  /**
-   * Picks a random quote and displays it
-   */
-  pickQuote = () => {
-    const numQuotes = this.state.quotes.length;
-    const randomQuoteIndex = Math.floor(Math.random() * numQuotes);
-
-    this.setState({
-      chosenQuote: this.state.quotes[randomQuoteIndex].quote
-    });
-
-    this.animateQuote(50);
-  }
-
-  /**
-   * Animates the quote into view one character at a time
-   */
-  animateQuote = (delay) => {
-    for (let i = 0; i <= this.state.chosenQuote.length; i++) {
-      setTimeout(() => {
-        this.setState({ displayedQuote: this.state.chosenQuote.slice(0, i) });
-      }, delay * i);
-    }
-  }
 
   /**
    * When the component is very first displayed on the webpage
    */
-  componentDidMount() {
+  // componentDidMount() {
+  //   axios.get("/api/daily")
+  //     .then(response => {
+  //       console.log(response)
+  //       this.setState({ transcript: response.data });
+        
+  //       // Pick a random quote and set the timer to pick another one later
+  //     });
+  // }
+  console() {console.log(this.state.transcript)}
+
+
+  getTranscript = () => {
     axios.get("/api/motivation")
       .then(response => {
-        this.setState({ quotes: response.data });
-
+        console.log(response)
+        this.setState({ transcript: response.data });
+        
         // Pick a random quote and set the timer to pick another one later
-        this.pickQuote();
-        setInterval(this.pickQuote, 5000);
       });
   }
 
@@ -57,7 +41,11 @@ class MotivationalQuote extends Component {
   render() {
     return (
       <span>
-        {this.state.displayedQuote}
+        {this.getTranscript()}
+        {this.state.trancript}
+        <div>HELLO</div>
+        <script>{console.log(this.state.transcript)}</script>
+        {/* <script>{console.log(this.getTranscipt())}</script> */}
       </span>
     );
   }
