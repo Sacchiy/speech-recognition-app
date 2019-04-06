@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-//import MotivationalQuote from "./components/MotivationalQuote";
+import MotivationalQuote from "./components/MotivationalQuote";
 import Home from "./pages/home";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import {Link} from 'react-router-dom';
@@ -10,6 +10,7 @@ import TextFields from "./components/filterBox";
 import Signup from "./pages/signup";
 import Login from "./pages/signin";
 import axios from 'axios';
+
 
 
 
@@ -111,6 +112,7 @@ class App extends Component {
         <div>
           <TextFields updateResults={this.updateResults} />
           <BarChart data={this.state.data}  />
+          <MotivationalQuote transcript = {this.getTranscript}/>
         </div>
       )
     } 
