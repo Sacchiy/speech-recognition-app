@@ -9,6 +9,7 @@ import BarChart from "./components/barChart";
 import TextFields from "./components/filterBox";
 import Signup from "./pages/signup";
 import Login from "./pages/signin";
+import axios from 'axios';
 
 
 
@@ -20,8 +21,17 @@ class App extends Component {
   state = {
     words: [],
     data: [],
-    currentPage: "Home"
+    currentPage: "Home",
+    transcript: []
   };
+
+  getTranscript = () => {
+    axios.get("/api/daily")
+      .then(response => {
+        this.setState({ transcript: response.data });
+        return this.state.transcript
+      });
+  }
 
   //Called from within <TextFields/> component provides words in input text box
   updateResults = (wordstoCount) => {
@@ -107,6 +117,7 @@ class App extends Component {
   }
 
   render() {
+  
     return (
       <Router>
 
