@@ -42,6 +42,15 @@ class MotivationalQuote extends Component {
       .then(response => {
         console.log('This is requestAudioJobStatus Function: ')
         console.log('Response.data.status: ', response.data.status); 
+
+        if (response.data.status === 'transcribed') {
+          this.getTranscriptText(response.data.id)
+        }
+
+        //passing in wordCount OR updateResults to grab results
+        // if (this.props.count) {
+        //   this.props.count(this.state.transcript)
+        // }
       });
   }
 
@@ -50,6 +59,7 @@ class MotivationalQuote extends Component {
       .then(response => {
         console.log('This is getTranscript Function: ')
         console.log('Response: ', response.data); 
+        this.setState({ transcript: response.data})
       });
     
   }
@@ -68,6 +78,7 @@ class MotivationalQuote extends Component {
         <div>HELLO</div>
         <p> Audio Job ID: {this.state.audioJobID} </p>
         <p> Audio Job Status:{this.state.audioJobStatus} </p>
+        <p> { this.state.transcript } </p>
 
         <button onClick={() => this.submitAudioJob()}>submitAudioJob</button> 
 

@@ -90,7 +90,8 @@ class App extends Component {
       return (
         <div>
           {/* <Home/> */}
-          <MotivationalQuote />
+          // passing in updateresults as a prop to grab the results
+          <MotivationalQuote count={this.updateResults}/>
         </div>
         );
     } else if (this.state.currentPage === "Signup") {
