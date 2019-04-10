@@ -23,7 +23,7 @@ class App extends Component {
     words: [],
     data: [],
     currentPage: "Home",
-    transcript: []
+    transcript: "hello my name is kevin"
   };
 
 
@@ -34,8 +34,13 @@ class App extends Component {
       words: wordstoCount
     });
 
-    this.wordCount("this is this is on test on on car car car car 3 3",wordstoCount.toString().trim())
+    this.wordCount(this.state.transcript, wordstoCount.toString().trim())
+  }
 
+  getTranscript = (transcript) => {
+    // console.log('getTranscript text', transcript)
+    this.setState({ transcript: transcript })
+    
   }
 
   //Receives a string with transcript and string with words to search
@@ -91,7 +96,7 @@ class App extends Component {
         <div>
           {/* <Home/> */}
           // passing in updateresults as a prop to grab the results
-          <MotivationalQuote count={this.updateResults}/>
+          
         </div>
         );
     } else if (this.state.currentPage === "Signup") {
@@ -111,7 +116,7 @@ class App extends Component {
         <div>
           <TextFields updateResults={this.updateResults} />
           <BarChart data={this.state.data}  />
-          
+          <MotivationalQuote getTranscript={this.getTranscript}/>
         </div>
       )
     } 
