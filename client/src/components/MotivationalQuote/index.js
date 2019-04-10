@@ -30,7 +30,7 @@ class MotivationalQuote extends Component {
         // console.log('Response.data.id: ', response.data.id); 
         // console.log('Response.data.status: ', response.data.status); 
         this.setState({ 
-            audioJobID: response.data.id,
+            audioJobID: response.data.id, 
             audioJobStatus: response.data.status
          });
       });
