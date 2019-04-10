@@ -18,7 +18,7 @@ const styles = theme => ({
  */
 class MotivationalQuote extends Component {
   state = {
-    transcript: ['fdgadfg'],
+    transcript: "",
     audioJobID: "",
     audioJobStatus: "in_progress"
   };
@@ -26,9 +26,9 @@ class MotivationalQuote extends Component {
   submitAudioJob = () => {
     axios.get("/api/motivation")
       .then(response => {
-        console.log('This is MotivationalQuote Component: ')
-        console.log('Response.data.id: ', response.data.id); 
-        console.log('Response.data.status: ', response.data.status); 
+        // console.log('This is MotivationalQuote Component: ')
+        // console.log('Response.data.id: ', response.data.id); 
+        // console.log('Response.data.status: ', response.data.status); 
         this.setState({ 
             audioJobID: response.data.id,
             audioJobStatus: response.data.status
@@ -37,14 +37,17 @@ class MotivationalQuote extends Component {
   }
 
   requestAudioJobStatus = () => {
-    console.log('this is ausiojobstatus');
+    // console.log('this is ausiojobstatus');
     axios.get("/api/motivation/requestAudioJobStatus"  )
       .then(response => {
-        console.log('This is requestAudioJobStatus Function: ')
-        console.log('Response.data.status: ', response.data.status); 
+        // console.log('This is requestAudioJobStatus Function: ')
+        // console.log('Response.data.status: ', response.data.status); 
 
         if (response.data.status === 'transcribed') {
+          this.setState({ audioJobStatus: response.data.status })
           this.getTranscriptText(response.data.id)
+        } else {
+          this.setState({ audioJobStatus: response.data.status })
         }
 
         //passing in wordCount OR updateResults to grab results
@@ -57,9 +60,13 @@ class MotivationalQuote extends Component {
   getTranscriptText = (audioJobID) => {
     axios.get("/api/motivation/getTranscriptText/" + audioJobID)
       .then(response => {
-        console.log('This is getTranscript Function: ')
-        console.log('Response: ', response.data); 
+        // console.log('This is getTranscript Function: ')
+        // console.log('Response: ', response.data); 
         this.setState({ transcript: response.data})
+        let x = response.data.toString()
+          
+        this.props.getTranscript(x)
+        // console.log(this.state.transcript)
       });
     
   }
