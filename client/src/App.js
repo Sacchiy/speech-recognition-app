@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import MotivationalQuote from "./components/MotivationalQuote";
 import Home from "./pages/home";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import "./App.css";
 import Navbar from "./components/navbar";
 import BarChart from "./components/barChart";
 import TextFields from "./components/filterBox";
+import RegistrationPage from "./pages/registrationpage";
 import Signup from "./pages/signup";
 import Login from "./pages/signin";
 import axios from 'axios';
@@ -20,7 +21,8 @@ class App extends Component {
   state = {
     words: [],
     data: [],
-    transcript: "hello my name is kevin"
+    transcript: "hello my name is kevin",
+    user: null
   };
 
   //Called from within <TextFields/> component provides words in input text box
@@ -87,15 +89,17 @@ class App extends Component {
 
         <Navbar/>
 
-        <Route exact path="/home" component={Uploader}/>
-
-        <Route exact path='/results' render={props =>
-          <div>
-            <TextFields updateResults={this.updateResults} />
-            <BarChart data={this.state.data}  />
-            <MotivationalQuote getTranscript={this.getTranscript}/>
-          </div>
-        }/>
+        <Switch>
+            {!this.state.user && <Route exact path="/" component={Uploader}/>} 
+            {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage}/>}
+            <Route exact path='/results' render={props =>
+              <div>
+                <TextFields updateResults={this.updateResults} />
+                <BarChart data={this.state.data}  />
+                <MotivationalQuote getTranscript={this.getTranscript}/>
+              </div>
+            }/>
+        </Switch>
 
       </Router>
     );
