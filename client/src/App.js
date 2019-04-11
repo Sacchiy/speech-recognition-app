@@ -10,6 +10,8 @@ import TextFields from "./components/filterBox";
 import Signup from "./pages/signup";
 import Login from "./pages/signin";
 import axios from 'axios';
+import Uploader from "./components/Uploader";
+
 
 
 
@@ -97,6 +99,9 @@ class App extends Component {
           {/* <Home/> */}
           // passing in updateresults as a prop to grab the results
           
+          <MotivationalQuote count={this.updateResults}/>
+          <Uploader/>
+
         </div>
         );
     } else if (this.state.currentPage === "Signup") {
