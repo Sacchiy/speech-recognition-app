@@ -63,9 +63,9 @@ class MotivationalQuote extends Component {
         // console.log('This is getTranscript Function: ')
         // console.log('Response: ', response.data); 
         this.setState({ transcript: response.data})
-        let x = response.data.toString()
+        //let x = response.data.toString()
           
-        this.props.getTranscript(x)
+        //this.props.getTranscript(x)
         // console.log(this.state.transcript)
       });
     

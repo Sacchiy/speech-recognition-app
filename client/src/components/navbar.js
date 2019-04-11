@@ -31,12 +31,10 @@ function ButtonAppBar(props) {
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Button color="inherit" onClick={() => props.handlePageChange("Home")}>Home</Button>
-          <Button color="inherit" onClick={() => props.handlePageChange("Results")}>Results</Button>
-          <Button color="inherit" onClick={() => props.handlePageChange("Signup")}>Signup</Button>
-          <Button color="inherit" onClick={() => props.handlePageChange("Login")}>Login</Button>
-          {/* <Link to="/Results2">Results2</Link>
-          <Link to="/Signup2">Signup2</Link> */}
+          <Button color="inherit"><Link to="/home">Home</Link></Button>
+          <Button color="inherit"><Link to="/results">Results</Link></Button>
+          {/* <Button color="inherit" onClick={() => props.handlePageChange("Signup")}>Signup</Button>
+          <Button color="inherit" onClick={() => props.handlePageChange("Login")}>Login</Button> */}
         </Toolbar>  
       </AppBar>
     </div>
