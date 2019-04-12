@@ -90,9 +90,9 @@ class App extends Component {
         <Navbar/>
 
         <Switch>
-            {!this.state.user && <Route exact path="/" component={Uploader}/>} 
+            {!this.state.user && <Route exact path="/UserHomePage" component={Uploader}/>} 
             {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage}/>}
-            <Route exact path='/results' render={props =>
+            <Route exact path='/Results' render={props =>
               <div>
                 <TextFields updateResults={this.updateResults} />
                 <BarChart data={this.state.data}  />
