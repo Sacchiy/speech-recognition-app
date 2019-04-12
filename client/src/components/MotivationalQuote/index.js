@@ -23,11 +23,8 @@ class MotivationalQuote extends Component {
     audioJobStatus: "in_progress"
   };
 
-  submitAudioJob = (user) => {
-    console.log('SUBMITTED');
-    console.log(user)
-    axios.get("/api/motivation/user/" + user)
-    
+  submitAudioJob = () => {
+    axios.get("/api/motivation")
       .then(response => {
         // console.log('This is MotivationalQuote Component: ')
         // console.log('Response.data.id: ', response.data.id); 
@@ -40,13 +37,12 @@ class MotivationalQuote extends Component {
   }
 
   requestAudioJobStatus = () => {
-    
-    console.log('this is ausiojobstatus');
+    // console.log('this is ausiojobstatus');
     axios.get("/api/motivation/requestAudioJobStatus"  )
       .then(response => {
-        console.log('This is requestAudioJobStatus Function: ')
-        console.log('Response.data.status: ', response.data.status); 
-        
+        // console.log('This is requestAudioJobStatus Function: ')
+        // console.log('Response.data.status: ', response.data.status); 
+
         if (response.data.status === 'transcribed') {
           this.setState({ audioJobStatus: response.data.status })
           this.getTranscriptText(response.data.id)
@@ -67,9 +63,9 @@ class MotivationalQuote extends Component {
         // console.log('This is getTranscript Function: ')
         // console.log('Response: ', response.data); 
         this.setState({ transcript: response.data})
-        let x = response.data.toString()
+        //let x = response.data.toString()
           
-        this.props.getTranscript(x)
+        //this.props.getTranscript(x)
         // console.log(this.state.transcript)
       });
     
@@ -91,7 +87,7 @@ class MotivationalQuote extends Component {
         <p> Audio Job Status:{this.state.audioJobStatus} </p>
         <p> { this.state.transcript } </p>
 
-        <button onClick={() => this.submitAudioJob(this.props.user)}>submitAudioJob</button> 
+        <button onClick={() => this.submitAudioJob()}>submitAudioJob</button> 
 
         <button onClick={() => this.requestAudioJobStatus()}>audioJobStatus</button> 
 

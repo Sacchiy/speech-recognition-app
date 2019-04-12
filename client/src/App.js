@@ -22,7 +22,7 @@ class App extends Component {
     words: [],
     data: [],
     transcript: "hello my name is kevin",
-    user: 'kevin'
+    user: null
   };
 
   //Called from within <TextFields/> component provides words in input text box
@@ -96,7 +96,7 @@ class App extends Component {
               <div>
                 <TextFields updateResults={this.updateResults} />
                 <BarChart data={this.state.data}  />
-                <MotivationalQuote getTranscript={this.getTranscript} user={this.state.user}/>
+                <MotivationalQuote getTranscript={this.getTranscript}/>
               </div>
             }/>
         </Switch>
