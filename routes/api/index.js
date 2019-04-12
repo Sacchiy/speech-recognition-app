@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const motivationRoutes = require("./motivation");
-const signup = require("./signup");
 const uploadRoutes = require("./upload");
+const userRoutes = require("./user");
 
 /**
  * API routes 
@@ -16,9 +16,10 @@ const uploadRoutes = require("./upload");
 // contains routes for `/api/motivation/`
 router.use("/motivation", motivationRoutes);
 
-// contains routes for `/api/signup/`
-router.use("/signup", signup);
+// contains route for uploading to cloudinary
+router.use("/upload", uploadRoutes);
 
-router.use("/upload", uploadRoutes)
+// contains routes for api/user
+router.use("/user",userRoutes);
 
 module.exports = router;
