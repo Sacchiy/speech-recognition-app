@@ -1,20 +1,17 @@
 import React, { Component } from "react";
 import MotivationalQuote from "./components/MotivationalQuote";
 import Home from "./pages/home";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import "./App.css";
-import ButtonAppBar from "./components/navbar";
+import Navbar from "./components/navbar";
 import BarChart from "./components/barChart";
 import TextFields from "./components/filterBox";
+import RegistrationPage from "./pages/registrationpage";
 import Signup from "./pages/signup";
 import Login from "./pages/signin";
 import axios from 'axios';
 import Uploader from "./components/Uploader";
-
-
-
-
 
 /**
  * The main App component that holds our whole React app
@@ -24,10 +21,9 @@ class App extends Component {
   state = {
     words: [],
     data: [],
-    currentPage: "Home",
-    transcript: "hello my name is kevin"
+    transcript: "hello my name is kevin",
+    user: null
   };
-
 
   //Called from within <TextFields/> component provides words in input text box
   updateResults = (wordstoCount) => {
@@ -86,59 +82,24 @@ class App extends Component {
     });    
   }
 
-  //Part of Routing. Sent to ButtonAppBar component to get the page and update state
-  handlePageChange = page => {
-    this.setState({ currentPage: page });
-  };
-
-  //Comes from the main render() 
-  decideLocation = () => {
-    if (this.state.currentPage === "Home") {
-      return (
-        <div>
-          {/* <Home/> */}
-          // passing in updateresults as a prop to grab the results
-          
-          <MotivationalQuote count={this.updateResults}/>
-          <Uploader/>
-
-        </div>
-        );
-    } else if (this.state.currentPage === "Signup") {
-      return (
-        <div>
-          <Signup/>
-        </div>
-      )
-    } else if (this.state.currentPage === "Login") {
-      return (
-        <div>
-          <Login/>
-        </div>
-      )
-    }else if (this.state.currentPage === "Results") {
-      return (
-        <div>
-          <TextFields updateResults={this.updateResults} />
-          <BarChart data={this.state.data}  />
-          <MotivationalQuote getTranscript={this.getTranscript}/>
-        </div>
-      )
-    } 
-  }
-
   render() {
   
     return (
       <Router>
 
-        <ButtonAppBar 
-            currentPage={this.state.currentPage}
-            handlePageChange={this.handlePageChange}
-        />
+        <Navbar/>
 
-        {this.decideLocation()}
-
+        <Switch>
+            {!this.state.user && <Route exact path="/" component={Uploader}/>} 
+            {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage}/>}
+            <Route exact path='/results' render={props =>
+              <div>
+                <TextFields updateResults={this.updateResults} />
+                <BarChart data={this.state.data}  />
+                <MotivationalQuote getTranscript={this.getTranscript}/>
+              </div>
+            }/>
+        </Switch>
 
       </Router>
     );
@@ -149,8 +110,3 @@ export default App;
 
 
 
-{/* <Route exact path="/home" component={Home}/>
-        <Link to="/home">Home</Link>
-
-        <Route exact path="/results" component={Results}/>
-        <Link to="/results">Results</Link> */}
