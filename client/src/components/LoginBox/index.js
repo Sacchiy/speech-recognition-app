@@ -1,7 +1,6 @@
 import React from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
-
-//import loginController from '../../controllers/LoginController';
+import loginController from '../../controllers/LoginController';
 
 class LoginBox extends React.Component {
   state = { username: "", password: "", error: null, loggedIn: false }
@@ -9,13 +8,13 @@ class LoginBox extends React.Component {
   login = (e) => {
     e.preventDefault();
 
-    // loginController.login(this.state.username, this.state.password, (err, user) => {
-    //   if (err) {
-    //     this.setState({ error: err });
-    //   } else {
-    //     this.props.history.push("/UserHomePage"); //triggers router to update page
-    //   }
-    // });
+    loginController.login(this.state.username, this.state.password, (err, user) => {
+      if (err) {
+        this.setState({ error: err });
+      } else {
+        this.props.history.push("/UserHomePage"); //triggers router to update page
+      }
+    });
   }
 
   inputChanged = event => {

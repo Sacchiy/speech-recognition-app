@@ -3,8 +3,35 @@ const path = require("path");
 const PORT = process.env.PORT || 3001;
 const routes = require("./routes");
 const app = express();
+const session = require("express-session");
+const cookieParser = require("cookie-parser");
 
 var db = require("./models");
+
+//Auth code Mike begins
+function setupSequelizeSessionStore() {
+  // initalize sequelize with session store
+  const SequelizeStore = require('connect-session-sequelize')(session.Store);
+  const sessionStore = new SequelizeStore({
+    db: db.sequelize
+  });
+  sessionStore.sync();
+
+  app.set('trust proxy', 1);
+  app.use(session({
+    secret: 'UCLA ROX',
+    resave: false,
+    saveUninitialized: true,
+    store: sessionStore 
+  }));
+}
+
+setupSequelizeSessionStore(); 
+
+// Define middleware here
+app.use(cookieParser());
+//Auth code Mike ends
+
 
 
 // Define middleware here
@@ -30,4 +57,3 @@ db.sequelize.sync().then(function() {
   });
 });
 
-//TEST Sachiko
