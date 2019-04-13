@@ -1,6 +1,7 @@
 const cloudinary = require('cloudinary').v2;
 const axios = require('axios');
 const multer = require('multer');
+
 const router = require("express").Router();
 const db = require("../../models"); 
 
@@ -9,6 +10,7 @@ cloudinary.config({
 cloud_name: 'dhvoh66p9',
 api_key: '584522465788177',
 api_secret: 'LNt3WNdI2WkxlXVCXYIWMeEIHcA',
+
 });
 
 // Multer helps us with multi-part form data (Forms with files)
@@ -20,6 +22,7 @@ const multerUpload = multer({ storage });
 // Express route where we receive files from the client
 // passing multer middleware
 router.post('/', multerUpload.single('file'), (req, res) => {
+
 console.log('Got file:', req.file.originalname);
 console.log('Extra form fields:', req.body);
 

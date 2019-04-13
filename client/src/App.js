@@ -1,18 +1,16 @@
 import React, { Component } from "react";
 import MotivationalQuote from "./components/MotivationalQuote";
-import Home from "./pages/home";
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import "./App.css";
-import ButtonAppBar from "./components/navbar";
+import Navbar from "./components/navbar";
 import BarChart from "./components/barChart";
 import TextFields from "./components/filterBox";
-import Signup from "./pages/signup";
-import Login from "./pages/signin";
-import axios from 'axios';
-
-
-
+import RegistrationPage from "./pages/registrationpage";
+import Uploader from "./components/Uploader";
+import FrontPage from "./pages/FrontPage";
+import LoginPage from "./pages/LoginPage";
+import loginController from "./controllers/LoginController"
 
 /**
  * The main App component that holds our whole React app
@@ -22,10 +20,27 @@ class App extends Component {
   state = {
     words: [],
     data: [],
-    currentPage: "Home",
-    transcript: []
+    transcript: "hello my name is kevin",
+    user: null
   };
 
+  //Authentication Methods
+
+  componentDidMount() {
+    console.log("componentDidMount");
+    loginController.addUserChangedListener(this.setUser);
+    loginController.recheckLogin();
+  }
+
+  componentWillUnmount() {
+    console.log("WillUnmount");
+    loginController.removeUserChangedListener(this.setUser);
+  }
+
+  setUser = (user) => {
+    console.log("setUser", user);
+    this.setState({ user: user });
+  }
 
   //Called from within <TextFields/> component provides words in input text box
   updateResults = (wordstoCount) => {
@@ -34,8 +49,13 @@ class App extends Component {
       words: wordstoCount
     });
 
-    this.wordCount("this is this is on test on on car car car car 3 3",wordstoCount.toString().trim())
+    this.wordCount(this.state.transcript, wordstoCount.toString().trim())
+  }
 
+  getTranscript = (transcript) => {
+    // console.log('getTranscript text', transcript)
+    this.setState({ transcript: transcript })
+    
   }
 
   //Receives a string with transcript and string with words to search
@@ -79,55 +99,28 @@ class App extends Component {
     });    
   }
 
-  //Part of Routing. Sent to ButtonAppBar component to get the page and update state
-  handlePageChange = page => {
-    this.setState({ currentPage: page });
-  };
-
-  //Comes from the main render() 
-  decideLocation = () => {
-    if (this.state.currentPage === "Home") {
-      return (
-        <div>
-          {/* <Home/> */}
-          <MotivationalQuote />
-        </div>
-        );
-    } else if (this.state.currentPage === "Signup") {
-      return (
-        <div>
-          <Signup/>
-        </div>
-      )
-    } else if (this.state.currentPage === "Login") {
-      return (
-        <div>
-          <Login/>
-        </div>
-      )
-    }else if (this.state.currentPage === "Results") {
-      return (
-        <div>
-          <TextFields updateResults={this.updateResults} />
-          <BarChart data={this.state.data}  />
-          
-        </div>
-      )
-    } 
-  }
-
   render() {
   
     return (
       <Router>
 
-        <ButtonAppBar 
-            currentPage={this.state.currentPage}
-            handlePageChange={this.handlePageChange}
-        />
+        <Navbar/>
+        <br/><br/>
+          { this.state.user ? <div>User: {this.state.user.username}</div> : null }
 
-        {this.decideLocation()}
-
+        <Switch>
+            {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage}/>}
+            {!this.state.user && <Route path="/LoginPage/:reason?" component={LoginPage}/>}
+            {!this.state.user && <Route exact path="/UserHomePage" component={Uploader}/>} 
+            {!this.state.user && <Route exact path="/" component={FrontPage}/>}
+            <Route exact path='/Results' render={props =>
+              <div>
+                <TextFields updateResults={this.updateResults} />
+                <BarChart data={this.state.data}  />
+                <MotivationalQuote getTranscript={this.getTranscript}/>
+              </div>
+            }/>
+        </Switch>
 
       </Router>
     );
@@ -138,8 +131,3 @@ export default App;
 
 
 
-{/* <Route exact path="/home" component={Home}/>
-        <Link to="/home">Home</Link>
-
-        <Route exact path="/results" component={Results}/>
-        <Link to="/results">Results</Link> */}
