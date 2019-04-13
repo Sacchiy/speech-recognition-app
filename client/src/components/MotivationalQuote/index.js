@@ -20,15 +20,12 @@ class MotivationalQuote extends Component {
   state = {
     transcript: "",
     audioJobID: "",
-    audioJobStatus: "in_progress"
+    audioJobStatus: ""
   };
 
   submitAudioJob = () => {
     axios.get("/api/motivation")
       .then(response => {
-        // console.log('This is MotivationalQuote Component: ')
-        // console.log('Response.data.id: ', response.data.id); 
-        // console.log('Response.data.status: ', response.data.status); 
         this.setState({ 
             audioJobID: response.data.id, 
             audioJobStatus: response.data.status
@@ -37,36 +34,25 @@ class MotivationalQuote extends Component {
   }
 
   requestAudioJobStatus = () => {
-    // console.log('this is ausiojobstatus');
-    axios.get("/api/motivation/requestAudioJobStatus"  )
+    // uses state to pass in the audio job id this.state.audioJobID
+    axios.post("/api/motivation/requestAudioJobStatus" , {audioJobID:this.state.audioJobID} )
       .then(response => {
-        // console.log('This is requestAudioJobStatus Function: ')
-        // console.log('Response.data.status: ', response.data.status); 
-
         if (response.data.status === 'transcribed') {
           this.setState({ audioJobStatus: response.data.status })
           this.getTranscriptText(response.data.id)
         } else {
-          this.setState({ audioJobStatus: response.data.status })
+          this.setState({ 
+            audioJobID: response.data.id,  
+            audioJobStatus: response.data.status
+         });
         }
-
-        //passing in wordCount OR updateResults to grab results
-        // if (this.props.count) {
-        //   this.props.count(this.state.transcript)
-        // }
       });
   }
 
   getTranscriptText = (audioJobID) => {
     axios.get("/api/motivation/getTranscriptText/" + audioJobID)
       .then(response => {
-        // console.log('This is getTranscript Function: ')
-        // console.log('Response: ', response.data); 
         this.setState({ transcript: response.data})
-        //let x = response.data.toString()
-          
-        //this.props.getTranscript(x)
-        // console.log(this.state.transcript)
       });
     
   }
@@ -82,15 +68,12 @@ class MotivationalQuote extends Component {
     
     return (
       <span>
-        <div>HELLO</div>
+        <div>This is Motivational Quote Component</div>
         <p> Audio Job ID: {this.state.audioJobID} </p>
         <p> Audio Job Status:{this.state.audioJobStatus} </p>
-        <p> { this.state.transcript } </p>
-
         <button onClick={() => this.submitAudioJob()}>submitAudioJob</button> 
-
         <button onClick={() => this.requestAudioJobStatus()}>audioJobStatus</button> 
-
+        <p> { this.state.transcript } </p>
       </span>
     );
   }
@@ -98,6 +81,3 @@ class MotivationalQuote extends Component {
 
 export default MotivationalQuote;
 
-// {/* {this.requestAudioJobStatus(this.state.audioJobID)} */}
-// {/* {this.requestAudioJobStatus()};
-//         {this.getTranscriptText(audioJobID)} */}

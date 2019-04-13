@@ -4,7 +4,6 @@ const multer = require('multer');
 const router = require("express").Router();
 const db = require("../../models"); 
 
-
 // Configure cloudinary with information from your .env file
 cloudinary.config({
 cloud_name: 'dhvoh66p9',
@@ -31,36 +30,27 @@ router.post('/', multerUpload.single('file'), (req, res) => {
     // After the upload is completed, this callback gets called
     function cloudinaryDone(error, result) {
       if (error) {
-      console.log("Error in cloudinary.uploader.upload_stream\n", error);
-      return;
-    }
-    console.log("Cloudinary audio info: ", result.audio);
-    // If you want to see all the data that Cloudinary comes back with
-    // console.log(result);
+        console.log("Error in cloudinary.uploader.upload_stream\n", error);
+        return;
+      }
+      //console.log("Cloudinary audio info: ", result.audio);
+      // If you want to see all the data that Cloudinary comes back with
+      // console.log(result);
 
-    console.log('Cloudinary url', result.url);
-    const link = result.url;
-    console.log('Cloudinary url!!!', link);
-    // router.post("/add", (req, res) => {
-    // const link = req.body.student;
-    // console.log("Got student!", student);
-    const id = 1
-
-    // // User.update({ nom: req.body.nom }, { where: {id: user.id} });
-    // db.UserData.update({ link_to_audio: link }, { where: {user_id: id }}).then(() => {
-    //   //Created new student!
-    //   res.json({ urlReceived: link});
-    //   console.log("mySQL table" + urlReceived);
-    // })
-
-    // User.update({ nom: req.body.nom }, { where: {id: user.id} });
-    db.UserData.create({ user_id: req.body.user_id, link_to_audio: link , audio_file_name: req.file.originalname }).then(() => {
-      //Created new student!
-      res.json({ urlReceived: link});
-      console.log("mySQL table" + urlReceived);
-    })
-    // Send back the working URL for the client to display.
-    res.json({ cdn_url: result.url });
+      //console.log('Cloudinary url', result.url);
+      const link = result.url;
+      //console.log('Cloudinary url!!!', link);
+      // router.post("/add", (req, res) => {
+      // const link = req.body.student;
+      // console.log("Got student!", student);
+      // const id = 1
+      db.UserData.create({ user_id: req.body.user_id, link_to_audio: link , audio_file_name: req.file.originalname })
+        .then(() => {
+          res.json({ urlReceived: link});
+          console.log("mySQL table" + urlReceived);
+        })
+      // Send back the working URL for the client to display.
+      res.json({ cdn_url: result.url });
     }
 
 });
