@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import MotivationalQuote from "./components/MotivationalQuote";
-import Home from "./pages/home";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import "./App.css";
@@ -8,10 +7,10 @@ import Navbar from "./components/navbar";
 import BarChart from "./components/barChart";
 import TextFields from "./components/filterBox";
 import RegistrationPage from "./pages/registrationpage";
-import Signup from "./pages/signup";
-import Login from "./pages/signin";
-import axios from 'axios';
 import Uploader from "./components/Uploader";
+import FrontPage from "./pages/FrontPage";
+import LoginPage from "./pages/LoginPage";
+import loginController from "./controllers/LoginController"
 
 /**
  * The main App component that holds our whole React app
@@ -24,6 +23,24 @@ class App extends Component {
     transcript: "hello my name is kevin",
     user: null
   };
+
+  //Authentication Methods
+
+  componentDidMount() {
+    console.log("componentDidMount");
+    loginController.addUserChangedListener(this.setUser);
+    loginController.recheckLogin();
+  }
+
+  componentWillUnmount() {
+    console.log("WillUnmount");
+    loginController.removeUserChangedListener(this.setUser);
+  }
+
+  setUser = (user) => {
+    console.log("setUser", user);
+    this.setState({ user: user });
+  }
 
   //Called from within <TextFields/> component provides words in input text box
   updateResults = (wordstoCount) => {
@@ -88,10 +105,14 @@ class App extends Component {
       <Router>
 
         <Navbar/>
+        <br/><br/>
+          { this.state.user ? <div>User: {this.state.user.username}</div> : null }
 
         <Switch>
-            {!this.state.user && <Route exact path="/UserHomePage" component={Uploader}/>} 
             {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage}/>}
+            {!this.state.user && <Route path="/LoginPage/:reason?" component={LoginPage}/>}
+            {!this.state.user && <Route exact path="/UserHomePage" component={Uploader}/>} 
+            {!this.state.user && <Route exact path="/" component={FrontPage}/>}
             <Route exact path='/Results' render={props =>
               <div>
                 <TextFields updateResults={this.updateResults} />
