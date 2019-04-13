@@ -104,14 +104,14 @@ class App extends Component {
     return (
       <Router>
 
-        <Navbar/>
+        <Navbar loginController={loginController}/>
         <br/><br/>
           { this.state.user ? <div>User: {this.state.user.username}</div> : null }
 
         <Switch>
             {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage}/>}
             {!this.state.user && <Route path="/LoginPage/:reason?" component={LoginPage}/>}
-            {!this.state.user && <Route exact path="/UserHomePage" component={Uploader}/>} 
+            {this.state.user && <Route exact path="/UserHomePage" component={Uploader}/>} 
             {!this.state.user && <Route exact path="/" component={FrontPage}/>}
             <Route exact path='/Results' render={props =>
               <div>
