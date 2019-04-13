@@ -40,7 +40,7 @@ export default class LoginBox extends React.Component {
         <div>
           Password: <input type="password" name="password" onChange={this.inputChanged}/>
         </div>
-        <input type="submit" value="Login"/>
+        <input type="submit" value="Register"/>
         {this.state.error && <div>{this.state.error}</div>}
       </form>
     )

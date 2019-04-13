@@ -8,6 +8,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
+import { withRouter } from "react-router";
+
 
 const styles = {
   root: {
@@ -24,6 +26,17 @@ const styles = {
 
 function ButtonAppBar(props) {
   const { classes } = props;
+
+  function logoutCheck() {
+    if (window.confirm("Logout of this account?")) {
+        props.loginController.logout(() => {
+        props.history.push("/");
+      })
+    }
+  }
+
+  const user = props.loginController.user;
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -31,11 +44,10 @@ function ButtonAppBar(props) {
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          <Button color="inherit"><Link to="/UserHomePage">User Home Page</Link></Button>
-          <Button color="inherit"><Link to="/Results">Results</Link></Button>
-          <Button color="inherit"><Link to="/RegistrationPage">Register</Link></Button>
-          {/* <Button color="inherit" onClick={() => props.handlePageChange("Signup")}>Signup</Button>
-          <Button color="inherit" onClick={() => props.handlePageChange("Login")}>Login</Button> */}
+          {user && <Button color="inherit"><Link to="/UserHomePage">User Home Page</Link></Button>}
+          {user && <Button color="inherit"><Link to="/Results">Results</Link></Button>}
+          {!user && <Button color="inherit"><Link to="/RegistrationPage">Register</Link></Button>}
+          {user && <a href="#" className="navlink" onClick={logoutCheck}>Logout</a>}
         </Toolbar>  
       </AppBar>
     </div>
@@ -46,7 +58,7 @@ ButtonAppBar.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(ButtonAppBar);
+export default withRouter(withStyles(styles)(ButtonAppBar));
 
 
 {/* <Typography variant="h6" color="inherit" className={classes.grow} >
