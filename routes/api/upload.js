@@ -54,7 +54,7 @@ router.post('/', multerUpload.single('file'), (req, res) => {
     // })
 
     // User.update({ nom: req.body.nom }, { where: {id: user.id} });
-    db.UserData.create({ link_to_audio: link , user_id: req.body.user_id }).then(() => {
+    db.UserData.create({ user_id: req.body.user_id, link_to_audio: link , audio_file_name: req.file.originalname }).then(() => {
       //Created new student!
       res.json({ urlReceived: link});
       console.log("mySQL table" + urlReceived);
