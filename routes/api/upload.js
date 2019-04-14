@@ -20,6 +20,7 @@ const multerUpload = multer({ storage });
 // Express route where we receive files from the client
 // passing multer middleware
 router.post('/', multerUpload.single('file'), (req, res) => {
+
     console.log('Got file with file_name:', req.file.originalname); //this is the filename
     console.log('Extra form fields:', req.body);
 
@@ -52,7 +53,6 @@ router.post('/', multerUpload.single('file'), (req, res) => {
       // Send back the working URL for the client to display.
       res.json({ cdn_url: result.url });
     }
-
 });
 
 module.exports = router;
