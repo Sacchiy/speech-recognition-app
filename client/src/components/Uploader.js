@@ -27,9 +27,10 @@ class Uploader extends Component {
 
     // If you want to add any extra info to this post
     data.append('description', 'blah blah blah');
-    data.append('whatever', 'some other meta data');
+    data.append('ausio_file_name', 'some other meta data');
+    data.append('user_id', this.props.user_id); //user name comming from App
 
-    console.log("data" +data);
+    console.log("data" + data);
 
     // Send it to our upload API route
     axios.post('/api/upload', data).then((response) => {

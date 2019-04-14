@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router";
+import { NavLink } from 'react-router-dom';
 
 
 const styles = {
@@ -44,9 +45,9 @@ function ButtonAppBar(props) {
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
             <MenuIcon />
           </IconButton>
-          {user && <Button color="inherit"><Link to="/UserHomePage">User Home Page</Link></Button>}
-          {user && <Button color="inherit"><Link to="/Results">Results</Link></Button>}
-          {!user && <Button color="inherit"><Link to="/RegistrationPage">Register</Link></Button>}
+          {user && <Button color="inherit"><NavLink to="/UserHomePage">User Home Page</NavLink></Button>}
+          {user && <Button color="inherit"><NavLink to="/Results">Results</NavLink></Button>}
+          {!user && <Button color="inherit"><NavLink to="/RegistrationPage">Register</NavLink></Button>}
           {user && <a href="#" className="navlink" onClick={logoutCheck}>Logout</a>}
         </Toolbar>  
       </AppBar>
