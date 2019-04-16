@@ -53,6 +53,7 @@ class MotivationalQuote extends Component {
     axios.get("/api/motivation/getTranscriptText/" + audioJobID)
       .then(response => {
         this.setState({ transcript: response.data})
+        this.props.getTranscript(response.data)
       });
     
   }
