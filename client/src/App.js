@@ -11,6 +11,7 @@ import Uploader from "./components/Uploader";
 import FrontPage from "./pages/FrontPage";
 import LoginPage from "./pages/LoginPage";
 import loginController from "./controllers/LoginController"
+import TranscriptTextBox from "./components/TranscriptTextBox"
 
 /**
  * The main App component that holds our whole React app
@@ -20,7 +21,7 @@ class App extends Component {
   state = {
     words: [],
     data: [],
-    transcript: "hello my name is kevin",
+    transcript: "Your transcript will appear here",
     user: null
   };
 
@@ -121,6 +122,7 @@ class App extends Component {
                 <TextFields updateResults={this.updateResults} />
                 <BarChart data={this.state.data}  />
                 <MotivationalQuote getTranscript={this.getTranscript}/>
+                <TranscriptTextBox transcript = {this.state.transcript}/>
               </div>
             }/>}
         </Switch>
