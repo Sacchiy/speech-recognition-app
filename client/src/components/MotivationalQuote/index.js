@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-
+import TranscriptTextBox from '../TranscriptTextBox'
 
 
 const styles = theme => ({
@@ -74,7 +74,7 @@ class MotivationalQuote extends Component {
         <p> Audio Job Status:{this.state.audioJobStatus} </p>
         <button onClick={() => this.submitAudioJob()}>submitAudioJob</button> 
         <button onClick={() => this.requestAudioJobStatus()}>audioJobStatus</button> 
-        <p> { this.state.transcript } </p>
+        <TranscriptTextBox transcript = {this.state.transcript}/>
       </span>
     );
   }

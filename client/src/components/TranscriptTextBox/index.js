@@ -18,7 +18,7 @@ const styles = theme => ({
     marginTop: 16,
   },
   menu: {
-    width: 200,
+    width: 400,
   },
 });
 
@@ -26,7 +26,7 @@ const styles = theme => ({
 
 class TranscriptTextBox extends React.Component {
   state = {
-    multiline: this.props.transcript
+    multiline: "Transcribing your audio..."
   };
 
   handleChange = name => event => {
@@ -53,12 +53,13 @@ class TranscriptTextBox extends React.Component {
           id="outlined-multiline-flexible"
           label="Transcript"
           multiline
-          rowsMax="4"
-          value={this.state.multiline}
+          fullWidth
+          rowsMax="30"
+          value={this.props.transcript}
           onChange={this.handleChange('multiline')}
           className={classes.textField}
           margin="normal"
-        //   helperText="hellDDDDDo"
+        //helperText="hellDDDDDo"
           variant="outlined"
         />
 
