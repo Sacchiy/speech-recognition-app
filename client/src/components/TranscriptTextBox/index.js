@@ -54,7 +54,7 @@ class TranscriptTextBox extends React.Component {
           label="Transcript"
           multiline
           fullWidth
-          rowsMax="30"
+          rowsMax="20"
           value={this.props.transcript}
           onChange={this.handleChange('multiline')}
           className={classes.textField}

@@ -27,6 +27,7 @@ class App extends Component {
     user: null
   };
 
+  
   //Authentication Methods
 
   componentDidMount() {

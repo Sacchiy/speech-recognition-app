@@ -47,7 +47,7 @@ function ButtonAppBar(props) {
           </IconButton>
           {!user && <Button color="inherit"><NavLink to="/">Home</NavLink></Button>}
           {user && <Button color="inherit"><NavLink to="/UserHomePage">User Home Page</NavLink></Button>}
-          {user && <Button color="inherit"><NavLink to="/Results">Results</NavLink></Button>}
+          {/* {user && <Button color="inherit"><NavLink to="/Results">Results</NavLink></Button>} */}
           {!user && <Button color="inherit"><NavLink to="/RegistrationPage">Register</NavLink></Button>}
           {user && <a href="#" className="navlink" onClick={logoutCheck}>Logout</a>}
           { user && <Button color="inherit">{user.username}</Button> }

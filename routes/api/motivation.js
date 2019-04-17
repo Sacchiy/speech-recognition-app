@@ -3,7 +3,6 @@ const motivationController = require("../../controllers/motivationController");
 const db = require("../../models"); 
 
 const { RevAiApiClient } = require('revai-node-sdk');
-
 const accessToken = '02mVOymB3ZAC-EBcW9_z2KV5xiEifvfhJc2gvfM_Vtd8QXh4Q3B17gTgk0CdAr7etfcuFZSsD9Gl2PwAkYwXa0hhO9_aM';
 
 // const API_KEY = "02nbdpQX3gFagcjmTKKZVAdd21WAfcxbedkhbx8GQB_qRNZJTjm_tY5FEhyouEEorLpob9PMGbnS1kPsVTH9u2m5ZayLc"
