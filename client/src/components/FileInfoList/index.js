@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import Table from '../FileInfoTable';
 
 
 class FileInfoList extends React.Component {
@@ -19,7 +20,24 @@ class FileInfoList extends React.Component {
 
     let list = this.state.fileInfoList.map(item  => <FileInfoItem fileInfo={item}/>)
     return (
-            <div><ul>{list}</ul></div>
+            
+            <div class="container">
+                <div class="row ">
+                    <div class="col col-lg-1">
+                        
+                    </div>
+                    <div class="col col-lg-9">
+                        <div>
+                            <ul>{list}</ul>
+                            <Table/>
+                        </div>
+                    </div>
+                    <div class="col col-lg-1">
+                        
+                    </div>
+                </div>
+            </div>
+            
     )
   }
 }
@@ -34,6 +52,7 @@ class FileInfoItem extends React.Component {
                 <Link to={"/results/" + this.props.fileInfo.revai_job_id}>See Transcript (If Ready)</Link>
                 {this.props.fileInfo.audio_file_name} , {this.props.fileInfo.revai_job_id} , {this.props.fileInfo.link_to_audio}
                 </li>
+                
             </div>
       )
     }
