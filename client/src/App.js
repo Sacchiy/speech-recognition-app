@@ -107,12 +107,11 @@ class App extends Component {
 
         <Navbar loginController={loginController}/>
         <br/><br/>
-          { this.state.user ? <div>User: {this.state.user.username} UserID: {this.state.user.id}</div> : null }
+          
 
         <Switch>
             {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage}/>}
             {!this.state.user && <Route path="/LoginPage/:reason?" component={LoginPage}/>}
-            {/* {this.state.user && <Route exact path="/UserHomePage" component={Uploader}/>}  */}
             {this.state.user && <Route exact path="/UserHomePage" render={props =>
             <Uploader user_id={this.state.user.id}/>}
             />}
@@ -132,6 +131,8 @@ class App extends Component {
 }
 
 export default App;
+
+{/* { this.state.user ? <div>User: {this.state.user.username} UserID: {this.state.user.id}</div> : null } */}
 
 
 
