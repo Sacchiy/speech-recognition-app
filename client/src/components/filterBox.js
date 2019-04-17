@@ -44,6 +44,7 @@ class OutlinedTextFields extends React.Component {
           label="Words to count"
           placeholder="Words to count"
           multiline
+          fullWidth
           className={classes.textField}
           margin="normal"
           variant="outlined"

@@ -35,12 +35,6 @@ class TranscriptTextBox extends React.Component {
     });
   };
 
-//   displayTranscriptText = (transcript) => {
-//       this.setState({
-//           multiline: 
-//       })
-//   }
-  
 
   render() {
     const { classes } = this.props;

@@ -15,10 +15,10 @@ export default class BarChart extends PureComponent {
       <ComposedChart
         layout="vertical"
         width={500}
-        height={400}
+        height={300}
         data={this.props.data}
         margin={{
-          top: 20, right: 20, bottom: 20, left: 20,
+          top: 20, right: 20, bottom: 0, left: 20,
         }}
       >
         <CartesianGrid stroke="#f5f5f5" />
@@ -26,7 +26,8 @@ export default class BarChart extends PureComponent {
         <YAxis dataKey="name" type="category" />
         <Tooltip />
         <Legend />
-        <Bar dataKey="pv" barSize={20} fill="#413ea0" />
+        <br></br>
+        <Bar name="# of counts" dataKey="pv" barSize={20} fill="#413ea0" />
         
       </ComposedChart>
     );
