@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from 'axios';
 import TranscriptTextBox from '../TranscriptTextBox'
+import { Redirect, withRouter } from 'react-router-dom';
+
 
 
 const styles = theme => ({
@@ -20,8 +22,21 @@ class MotivationalQuote extends Component {
   state = {
     transcript: "",
     audioJobID: "",
-    audioJobStatus: ""
+    audioJobStatus: "",
+    fileInfo: null
   };
+
+  componentDidMount(){
+    axios.get("/api/fileInfo/revai_job_id/"+this.props.match.params.fileInfoId)
+      .then(response => {
+        console.log(response.data);
+        this.setState({ 
+            audioJobID: response.data.fileInfo.revai_job_id,
+            fileInfo: response.data
+      });
+    })
+  }
+
 
   submitAudioJob = () => {
     axios.get("/api/motivation")
@@ -85,5 +100,6 @@ class MotivationalQuote extends Component {
   }
 }
 
-export default MotivationalQuote;
+export default withRouter(MotivationalQuote);
+
 

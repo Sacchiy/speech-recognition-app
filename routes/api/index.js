@@ -2,6 +2,7 @@ const router = require("express").Router();
 const motivationRoutes = require("./motivation");
 const uploadRoutes = require("./upload");
 const userRoutes = require("./user");
+const fileInfo = require("./fileInfo");
 
 /**
  * API routes 
@@ -21,5 +22,7 @@ router.use("/upload", uploadRoutes);
 
 // contains routes for api/user
 router.use("/user",userRoutes);
+
+router.use("/fileInfo", fileInfo);
 
 module.exports = router;

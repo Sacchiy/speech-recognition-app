@@ -11,6 +11,8 @@ import Uploader from "./components/Uploader";
 import FrontPage from "./pages/FrontPage";
 import LoginPage from "./pages/LoginPage";
 import loginController from "./controllers/LoginController"
+import FileInfoList from "./components/FileInfoList";
+
 //import TranscriptTextBox from "./components/TranscriptTextBox"
 
 /**
@@ -113,16 +115,19 @@ class App extends Component {
             {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage}/>}
             {!this.state.user && <Route path="/LoginPage/:reason?" component={LoginPage}/>}
             {this.state.user && <Route exact path="/UserHomePage" render={props =>
-            <Uploader user_id={this.state.user.id}/>}
+            <div>
+            <Uploader user_id={this.state.user.id}/>
+            <FileInfoList/>
+            </div>}
             />}
             {!this.state.user && <Route exact path="/" component={FrontPage}/>}
-            {this.state.user && <Route exact path='/Results' render={props =>
+            {this.state.user && <Route exact path='/Results/:fileInfoId?' render={props =>
               <div>
                   <div class="container">
                         <div class="row ">
                           
                           <div class="col col-lg-6">
-                            <MotivationalQuote getTranscript={this.getTranscript}/>
+                              <MotivationalQuote getTranscript={this.getTranscript}/>
                           </div>
                           <div class="col col-lg-6">
                               <TextFields updateResults={this.updateResults} />
