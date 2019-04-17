@@ -132,6 +132,7 @@ class App extends Component {
                           </div>
                           <div class="col col-lg-6">
                               <TextFields updateResults={this.updateResults} />
+                              <br></br>
                               <BarChart data={this.state.data}  />
                           </div>
                           

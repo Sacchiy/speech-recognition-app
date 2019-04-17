@@ -41,8 +41,8 @@ class OutlinedTextFields extends React.Component {
        
         <TextField
           id="outlined-textarea"
-          label="Words to count"
-          placeholder="Words to count"
+          label="Type the words you want to count"
+          placeholder="Type the words you want to count"
           multiline
           fullWidth
           className={classes.textField}

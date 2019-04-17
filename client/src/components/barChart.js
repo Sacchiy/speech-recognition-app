@@ -12,10 +12,11 @@ export default class BarChart extends PureComponent {
   render() {
     
     return (
+      
       <ComposedChart
         layout="vertical"
         width={500}
-        height={300}
+        height={330}
         data={this.props.data}
         margin={{
           top: 20, right: 20, bottom: 0, left: 20,
