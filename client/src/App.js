@@ -11,6 +11,7 @@ import Uploader from "./components/Uploader";
 import FrontPage from "./pages/FrontPage";
 import LoginPage from "./pages/LoginPage";
 import loginController from "./controllers/LoginController"
+//import TranscriptTextBox from "./components/TranscriptTextBox"
 
 /**
  * The main App component that holds our whole React app
@@ -20,7 +21,7 @@ class App extends Component {
   state = {
     words: [],
     data: [],
-    transcript: "hello my name is kevin",
+    transcript: "Your transcript will appear here",
     user: null
   };
 
@@ -106,21 +107,30 @@ class App extends Component {
 
         <Navbar loginController={loginController}/>
         <br/><br/>
-          { this.state.user ? <div>User: {this.state.user.username} UserID: {this.state.user.id}</div> : null }
+          
 
         <Switch>
             {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage}/>}
             {!this.state.user && <Route path="/LoginPage/:reason?" component={LoginPage}/>}
-            {/* {this.state.user && <Route exact path="/UserHomePage" component={Uploader}/>}  */}
             {this.state.user && <Route exact path="/UserHomePage" render={props =>
             <Uploader user_id={this.state.user.id}/>}
             />}
             {!this.state.user && <Route exact path="/" component={FrontPage}/>}
             {this.state.user && <Route exact path='/Results' render={props =>
               <div>
-                <TextFields updateResults={this.updateResults} />
-                <BarChart data={this.state.data}  />
-                <MotivationalQuote getTranscript={this.getTranscript}/>
+                  <div class="container">
+                        <div class="row ">
+                          
+                          <div class="col col-lg-6">
+                            <MotivationalQuote getTranscript={this.getTranscript}/>
+                          </div>
+                          <div class="col col-lg-6">
+                              <TextFields updateResults={this.updateResults} />
+                              <BarChart data={this.state.data}  />
+                          </div>
+                          
+                        </div>
+                      </div>
               </div>
             }/>}
         </Switch>
@@ -131,6 +141,8 @@ class App extends Component {
 }
 
 export default App;
+
+{/* { this.state.user ? <div>User: {this.state.user.username} UserID: {this.state.user.id}</div> : null } */}
 
 
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from 'axios';
-
+import TranscriptTextBox from '../TranscriptTextBox'
 
 
 const styles = theme => ({
@@ -33,14 +33,27 @@ class MotivationalQuote extends Component {
       });
   }
 
+  getTranscriptText = (audioJobID) => {
+    axios.get("/api/motivation/getTranscriptText/" + audioJobID)
+      .then(response => {
+        this.setState({ transcript: response.data})
+        this.props.getTranscript(response.data)  //sets the state of transcript to response.data in app.js component
+      });
+    
+  }
+
   requestAudioJobStatus = () => {
     // uses state to pass in the audio job id this.state.audioJobID
+    console.log('hello')
+    console.log(this.state.audioJobID);
     axios.post("/api/motivation/requestAudioJobStatus" , {audioJobID:this.state.audioJobID} )
       .then(response => {
         if (response.data.status === 'transcribed') {
           this.setState({ audioJobStatus: response.data.status })
           this.getTranscriptText(response.data.id)
         } else {
+          console.log('no response');
+          console.log(response.data.status);
           this.setState({ 
             audioJobID: response.data.id,  
             audioJobStatus: response.data.status
@@ -49,14 +62,7 @@ class MotivationalQuote extends Component {
       });
   }
 
-  getTranscriptText = (audioJobID) => {
-    axios.get("/api/motivation/getTranscriptText/" + audioJobID)
-      .then(response => {
-        this.setState({ transcript: response.data})
-        this.props.getTranscript(response.data)
-      });
-    
-  }
+  
 
   
   //zTHdxVpTraHX //works
@@ -69,12 +75,11 @@ class MotivationalQuote extends Component {
     
     return (
       <span>
-        <div>This is Motivational Quote Component</div>
         <p> Audio Job ID: {this.state.audioJobID} </p>
         <p> Audio Job Status:{this.state.audioJobStatus} </p>
         <button onClick={() => this.submitAudioJob()}>submitAudioJob</button> 
         <button onClick={() => this.requestAudioJobStatus()}>audioJobStatus</button> 
-        <p> { this.state.transcript } </p>
+        <TranscriptTextBox transcript = {this.state.transcript}/>
       </span>
     );
   }
