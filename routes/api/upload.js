@@ -3,6 +3,9 @@ const axios = require('axios');
 const multer = require('multer');
 const router = require("express").Router();
 const db = require("../../models"); 
+const { RevAiApiClient } = require('revai-node-sdk');
+const accessToken = process.env.REV_AI_ACCESS_TOKEN;
+const client = new RevAiApiClient(accessToken);
 
 // Configure cloudinary with information from your .env file
 cloudinary.config({
@@ -29,7 +32,7 @@ router.post('/', multerUpload.single('file'), (req, res) => {
     // https://cloudinary.com/documentation/image_upload_api_reference
     cloudinary.uploader.upload_stream({ resource_type: "video" }, cloudinaryDone).end(req.file.buffer);
     // After the upload is completed, this callback gets called
-    function cloudinaryDone(error, result) {
+    async function cloudinaryDone(error, result) {
       if (error) {
         console.log("Error in cloudinary.uploader.upload_stream\n", error);
         return;
@@ -40,12 +43,17 @@ router.post('/', multerUpload.single('file'), (req, res) => {
 
       //console.log('Cloudinary url', result.url);
       const link = result.url;
+      let job = await client.submitJobUrl(link);
       //console.log('Cloudinary url!!!', link);
       // router.post("/add", (req, res) => {
       // const link = req.body.student;
       // console.log("Got student!", student);
       // const id = 1
-      db.UserData.create({ user_id: req.body.user_id, link_to_audio: link , audio_file_name: req.file.originalname })
+      db.UserData.create({ user_id: req.body.user_id,
+         link_to_audio: link ,
+          audio_file_name: req.file.originalname,
+          revai_job_id: job.id
+         })
         .then(() => {
           res.json({ urlReceived: link});
           console.log("mySQL table" + urlReceived);
