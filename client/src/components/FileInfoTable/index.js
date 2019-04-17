@@ -173,31 +173,36 @@ function createData(dessert, calories, fat, carbs, protein) {
   return { id, dessert, calories, fat, carbs, protein };
 }
 
-const rows = [];
+let rows = [];
 
 for (let i = 0; i < 200; i += 1) {
   const randomSelection = data[Math.floor(Math.random() * data.length)];
   rows.push(createData(...randomSelection));
 }
 
-function ReactVirtualizedTable() {
+//console.log(this.props);
+
+//rows = [{id: 1, dessert: "Ice cream sandwich", calories: 237, fat: 9, carbs: 37}]
+
+function ReactVirtualizedTable(x) {
+    
   return (
     <Paper style={{ height: 400, width: '100%' }}>
       <WrappedVirtualizedTable
-        rowCount={rows.length}
-        rowGetter={({ index }) => rows[index]}
+        rowCount={x.rows.length}
+        rowGetter={({ index }) => x.rows[index]}
         onRowClick={event => console.log(event)}
         columns={[
           {
             width: 200,
             flexGrow: 1.0,
             label: 'File Name',
-            dataKey: 'dessert',
+            dataKey: 'file_name',
           },
           {
             width: 120,
-            label: 'Length (s)',
-            dataKey: 'calories',
+            label: 'Created At',
+            dataKey: 'createdAt',
             numeric: true,
           },
           {

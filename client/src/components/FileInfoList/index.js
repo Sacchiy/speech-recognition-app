@@ -17,8 +17,16 @@ class FileInfoList extends React.Component {
     }
 
   render() {
-
+    let x=[];
     let list = this.state.fileInfoList.map(item  => <FileInfoItem fileInfo={item}/>)
+    let rows = [{id: 1, dessert: "mine", calories: 888, fat: 9, carbs: 37}]
+    console.log('this is file info list',this.state.fileInfoList);
+
+    for(let i=0; i<this.state.fileInfoList.length; i++){
+        x[i] = {'file_name': this.state.fileInfoList[i].audio_file_name, 'createdAt':this.state.fileInfoList[i].createdAt,calories: 888, fat: 9, carbs: 37};
+    }
+    console.log('this is x',x);
+
     return (
             
             <div class="container">
@@ -29,7 +37,7 @@ class FileInfoList extends React.Component {
                     <div class="col col-lg-9">
                         <div>
                             <ul>{list}</ul>
-                            <Table/>
+                            <Table rows={x}/>
                         </div>
                     </div>
                     <div class="col col-lg-1">
