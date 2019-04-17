@@ -118,9 +118,19 @@ class App extends Component {
             {!this.state.user && <Route exact path="/" component={FrontPage}/>}
             {this.state.user && <Route exact path='/Results' render={props =>
               <div>
-                <TextFields updateResults={this.updateResults} />
-                <BarChart data={this.state.data}  />
-                <MotivationalQuote getTranscript={this.getTranscript}/>
+                  <div class="container">
+                        <div class="row ">
+                          
+                          <div class="col col-lg-6">
+                            <MotivationalQuote getTranscript={this.getTranscript}/>
+                          </div>
+                          <div class="col col-lg-6">
+                              <TextFields updateResults={this.updateResults} />
+                              <BarChart data={this.state.data}  />
+                          </div>
+                          
+                        </div>
+                      </div>
               </div>
             }/>}
         </Switch>

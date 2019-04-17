@@ -75,7 +75,6 @@ class MotivationalQuote extends Component {
     
     return (
       <span>
-        <div>This is Motivational Quote Component</div>
         <p> Audio Job ID: {this.state.audioJobID} </p>
         <p> Audio Job Status:{this.state.audioJobStatus} </p>
         <button onClick={() => this.submitAudioJob()}>submitAudioJob</button> 
