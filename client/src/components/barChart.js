@@ -8,6 +8,7 @@ import {
 export default class BarChart extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/shjsn5su/';
 
+  
   render() {
     
     return (

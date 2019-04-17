@@ -31,7 +31,7 @@ class FileInfoItem extends React.Component {
       return (
             <div>
                 <li>
-                <Link to={"/results/" + this.props.fileInfo.revai_job_id}>Transcribe</Link>
+                <Link to={"/results/" + this.props.fileInfo.revai_job_id}>See Transcript (If Ready)</Link>
                 {this.props.fileInfo.audio_file_name} , {this.props.fileInfo.revai_job_id} , {this.props.fileInfo.link_to_audio}
                 </li>
             </div>

@@ -27,6 +27,11 @@ class OutlinedTextFields extends React.Component {
   handleChange = name => event => {
     this.props.updateResults(event.target.value);
   };
+  
+  //clear text box 
+  componentWillMount(){
+    this.props.updateResults("");
+  }
 
   render() {
     const { classes } = this.props;
