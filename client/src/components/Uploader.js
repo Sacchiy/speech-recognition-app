@@ -35,12 +35,16 @@ class Uploader extends Component {
 
     console.log("data" + data);
 
-    // Send it to our upload API route
+    // Send audio file link to our upload API route 
+    // which a) uploads to cloudinary and Makes call to REVai and returns
+    // cloudinary link and revai job status
     axios.post('/api/upload', data).then((response) => {
       this.setState({
         cdn_url: response.data.urlReceived,//cdn_url
         job_status: response.data.job_status
       })
+      
+      window.location.reload();
     })
   }
   //urlReceived

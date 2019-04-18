@@ -15,6 +15,9 @@ class FileInfoList extends React.Component {
           }); 
     }
 
+    
+
+    //Convert from seconds to HR:MM:SS
     fancyTimeFormat = (time) => {   
         // Hours, minutes and seconds
         var hrs = ~~(time / 3600);

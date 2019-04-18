@@ -24,7 +24,8 @@ class App extends Component {
     words: [],
     data: [],
     transcript: "Your transcript will appear here",
-    user: null
+    user: null,
+    fileList: null
   };
 
   
@@ -103,6 +104,8 @@ class App extends Component {
     });    
   }
 
+  
+
   render() {
   
     return (
@@ -123,7 +126,7 @@ class App extends Component {
                           <div class="col col-lg-2">  
                           </div>
                           <div class="col col-lg-6">
-                            <Uploader user_id={this.state.user.id}/>
+                            <Uploader user_id={this.state.user.id} />
                           </div>
                           <div class="col col-lg-2">  
                           </div>
@@ -133,7 +136,7 @@ class App extends Component {
                           <div class="col col-lg-1">  
                           </div>
                           <div class="col col-lg-10">
-                            <FileInfoList/>
+                            <FileInfoList />
                           </div>
                           <div class="col col-lg-1">  
                           </div>
