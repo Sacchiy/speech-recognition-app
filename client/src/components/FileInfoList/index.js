@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-
 class FileInfoList extends React.Component {
   state = { fileInfoList: [] }
 
@@ -46,8 +45,7 @@ class FileInfoList extends React.Component {
                 
                 </tbody>
             </table>  
-        </div>
-            
+        </div>  
     )
   }
 }
