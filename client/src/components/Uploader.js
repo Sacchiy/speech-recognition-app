@@ -43,7 +43,7 @@ class Uploader extends Component {
   render() {
     return(
       <div>
-        This is the UPLOADER in User Home Page
+        
         <div>
           <input type="file" ref={this.fileInput}/>
           <button onClick={this.uploadFile}>Submit</button>
