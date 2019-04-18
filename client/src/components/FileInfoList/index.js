@@ -17,75 +17,40 @@ class FileInfoList extends React.Component {
     }
 
   render() {
-    let x=[];
-    let list = this.state.fileInfoList.map(item  => <FileInfoItem fileInfo={item}/>)
-    // let rows = [{id: 1, dessert: "mine", calories: 888, fat: 9, carbs: 37}]
-    // console.log('this is file info list',this.state.fileInfoList);
-
-    // for(let i=0; i<this.state.fileInfoList.length; i++){
-    //     x[i] = {'file_name': this.state.fileInfoList[i].audio_file_name,
-    //             'createdAt':this.state.fileInfoList[i].createdAt,
-    //             'revai_job_id':this.state.fileInfoList[i].revai_job_id
-    //             };
-    // }
-    // console.log('this is x',x);
+     
+    let row = this.state.fileInfoList.map(item  => 
+        <tr key ={item.id}>
+            <td >{item.id}</td>
+            <td >{item.audio_file_name}</td>
+            <td> <a href={item.link_to_audio}> Play</a></td> 
+            <td>{item.createdAt}</td>
+            <td><Link to={"/results/" + item.revai_job_id}>See Transcript (If Ready)</Link></td>
+        </tr>
+    ) 
 
     return (
         <div>
-            
-                            {/* <ul>{list}</ul> */}
-                        
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">File Name</th>
-                                        <th scope="col">Play</th>
-                                        <th scope="col">Uploaded</th>
-                                        <th scope="col">Status</th>
-                                    </tr>
-                                </thead>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">File Name</th>
+                        <th scope="col">Audio</th>
+                        <th scope="col">Uploaded</th>
+                        <th scope="col">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
 
-                                    <tbody>
-
-                                        {list}
-                                        
-
-                                    </tbody>
-                            </table>
-                    
+                    {row}
+                
+                </tbody>
+            </table>  
         </div>
             
     )
   }
 }
-
-class FileInfoItem extends React.Component {
-    
-    render() {
-    
-      return (
-            <div>
-
-                    <tr>
-                        <td >{this.props.fileInfo.id}</td>
-                        <td >{this.props.fileInfo.audio_file_name}</td>
-                        {/* <td>{this.props.fileInfo.link_to_audio}</td> */}
-                        <td>{this.props.fileInfo.createdAt}</td>
-                        <td><Link to={"/results/" + this.props.fileInfo.revai_job_id}>See Transcript (If Ready)</Link></td>
-                    </tr>
-
-                {/* <li>
-                <Link to={"/results/" + this.props.fileInfo.revai_job_id}>See Transcript (If Ready)</Link>
-                {this.props.fileInfo.audio_file_name} , {this.props.fileInfo.revai_job_id} , {this.props.fileInfo.link_to_audio}
-                </li> */}
-                
-            </div>
-      )
-    }
-}
-
-
 
 export default withRouter(FileInfoList);
 
