@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import UploadButton from './Buttons';
+import FileInfoList from "./FileInfoList";
 
 class Uploader extends Component {
-  state = { cdn_url: null }
+  state = { cdn_url: null, job_status:null }
 
   // File input fields cannot be controlled by React since React cannot set their value
   // So we will hold a reference to it so we can access the field later
@@ -37,10 +38,12 @@ class Uploader extends Component {
     // Send it to our upload API route
     axios.post('/api/upload', data).then((response) => {
       this.setState({
-        cdn_url: response.data.cdn_url
+        cdn_url: response.data.urlReceived,//cdn_url
+        job_status: response.data.job_status
       })
     })
   }
+  //urlReceived
     
   render() {
     return(
@@ -49,9 +52,11 @@ class Uploader extends Component {
           To DO: Make matching button to choose file
           <input type="file" ref={this.fileInput} />
           {/* <button onClick={this.uploadFile}>Submit</button> */}
-          <UploadButton uploadFile={this.uploadFile}/>
-        
-        {this.state.cdn_url && <a href={this.state.cdn_url}>CDN Link</a>}  
+          <UploadButton uploadFile={this.uploadFile}/> 
+          To DO: Make transition to load table automatic
+          {this.state.cdn_url && <a href={this.state.cdn_url}>CDN Link</a> }  
+          {this.state.job_status}
+          {/* <FileInfoList/>  can we put file info list and call it from here when upload?*/}
       </div>
     )
   }
