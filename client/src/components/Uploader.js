@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import UploadButton from './Buttons';
 
 class Uploader extends Component {
   state = { cdn_url: null }
@@ -11,6 +12,7 @@ class Uploader extends Component {
   fileInput = React.createRef();
   
   uploadFile = () => {
+    
     if (!this.fileInput.current.files.length) {
       console.log('No file was selected');
       return;
@@ -44,10 +46,11 @@ class Uploader extends Component {
     return(
       <div>
         
-        <div>
-          <input type="file" ref={this.fileInput}/>
-          <button onClick={this.uploadFile}>Submit</button>
-        </div>
+          To DO: Make matching button to choose file
+          <input type="file" ref={this.fileInput} />
+          {/* <button onClick={this.uploadFile}>Submit</button> */}
+          <UploadButton uploadFile={this.uploadFile}/>
+        
         {this.state.cdn_url && <a href={this.state.cdn_url}>CDN Link</a>}  
       </div>
     )
