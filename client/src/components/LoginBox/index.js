@@ -27,12 +27,15 @@ class LoginBox extends React.Component {
     }
 
     return (
+      <div className="center">
+      <h2 className="LogIn">Log in</h2>
       <form onSubmit={this.login}>
-        Username: <input type="text" name="username" onChange={this.inputChanged}/>
-        Password: <input type="password" name="password" onChange={this.inputChanged}/>
-        <input type="submit" onClick={this.login} value="Login"/>
+        <input type="text" className="box" name="username" placeholder= "Username" onChange={this.inputChanged}/>
+        <input type="password" className="box" name="password" placeholder="Password" onChange={this.inputChanged}/>
+        <input type="submit" className="box" id="submit" onClick={this.login} value="LOG IN"/>
         {this.state.error && <div>{this.state.error}</div>}
       </form>
+      </div>
     )
   }
 }

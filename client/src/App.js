@@ -66,7 +66,7 @@ class App extends Component {
   uploaderUrlChanged = url => {
     this.setState({ uploaderUrl: url});
   }
-  
+
   //Receives a string with transcript and string with words to search
   wordCount = (text, words) => {
 
