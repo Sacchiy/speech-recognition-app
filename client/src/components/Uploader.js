@@ -58,7 +58,6 @@ class Uploader extends Component {
           <input type="file" ref={this.fileInput} />
           {/* <button onClick={this.uploadFile}>Submit</button> */}
           <UploadButton uploadFile={this.uploadFile}/> 
-          To DO: Make transition to load table automatic
           {this.state.cdn_url && <a href={this.state.cdn_url}>CDN Link</a> }  
           {this.state.job_status}
           {/* <FileInfoList/>  can we put file info list and call it from here when upload?*/}

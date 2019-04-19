@@ -27,9 +27,11 @@ class LoginBox extends React.Component {
     }
 
     return (
-      <div className="center">
-      <h2 className="LogIn">Log in</h2>
-      <form onSubmit={this.login}>
+    // //  <div className="center" id="login">
+    // {/* <h4 className="LogIn">Log in</h4> */}
+    <div className="center">
+      <form id="loginform" onSubmit={this.login}>
+        <h5>Log in</h5>
         <input type="text" className="box" name="username" placeholder= "Username" onChange={this.inputChanged}/>
         <input type="password" className="box" name="password" placeholder="Password" onChange={this.inputChanged}/>
         <input type="submit" className="box" id="submit" onClick={this.login} value="LOG IN"/>

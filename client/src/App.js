@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import MotivationalQuote from "./components/MotivationalQuote";
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import {Link} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import "./App.css";
 import Navbar from "./components/navbar";
 import BarChart from "./components/barChart";
@@ -28,7 +28,6 @@ class App extends Component {
     fileList: null
   };
 
-  
   //Authentication Methods
 
   componentDidMount() {
@@ -49,7 +48,7 @@ class App extends Component {
 
   //Called from within <TextFields/> component provides words in input text box
   updateResults = (wordstoCount) => {
-    
+
     this.setState({
       words: wordstoCount
     });
@@ -60,11 +59,11 @@ class App extends Component {
   getTranscript = (transcript) => {
     // console.log('getTranscript text', transcript)
     this.setState({ transcript: transcript })
-    
+
   }
 
   uploaderUrlChanged = url => {
-    this.setState({ uploaderUrl: url});
+    this.setState({ uploaderUrl: url });
   }
 
   //Receives a string with transcript and string with words to search
@@ -75,105 +74,91 @@ class App extends Component {
     let searchTerms = words.split(" ");
     let result = [];
 
-    for(let k=0;k<searchTerms.length;k++){ 
-        for(let i=0; i<textArray.length; i++){
-            if(textArray[i]===searchTerms[k]){
-                counter++;
-            }
+    for (let k = 0; k < searchTerms.length; k++) {
+      for (let i = 0; i < textArray.length; i++) {
+        if (textArray[i] === searchTerms[k]) {
+          counter++;
         }
-        result[k]=counter;
-        counter = 0;
+      }
+      result[k] = counter;
+      counter = 0;
     }
-    
-    this.createObject(result,searchTerms)
-    
+
+    this.createObject(result, searchTerms)
     return result;
-    
+
   }
 
   //takes wordCount results creates object and updates state to refresh chart
-  createObject = (result,searchTerms) => {
-    
+  createObject = (result, searchTerms) => {
+
     let data = [];
 
-    for(let i=0;i<searchTerms.length;i++){
+    for (let i = 0; i < searchTerms.length; i++) {
       data.push({
-        name: searchTerms[i],  pv: result[i] 
+        name: searchTerms[i], pv: result[i]
       })
     }
 
     //Update state to refresh chart
-    this.setState({      
+    this.setState({
       data: data
-    });    
+    });
   }
 
-  
-
   render() {
-  
+
     return (
       <Router>
-
-        <Navbar loginController={loginController}/>
-        <br/><br/>
-          
-
+        <Navbar loginController={loginController} />
+        <br /><br />
         <Switch>
-            {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage}/>}
-            {!this.state.user && <Route path="/LoginPage/:reason?" component={LoginPage}/>}
-            {this.state.user && <Route exact path="/UserHomePage" render={props =>
+          {!this.state.user && <Route path="/RegistrationPage" component={RegistrationPage} />}
+          {!this.state.user && <Route path="/LoginPage/:reason?" component={LoginPage} />}
+          {this.state.user && <Route exact path="/UserHomePage" render={props =>
             <div>
-            
-            <div className="container">
-                        <div className="row ">
-                          <div className="col col-lg-2">  
-                          </div>
-                          <div className="col col-lg-6">
-                            <Uploader user_id={this.state.user.id} />
-                          </div>
-                          <div className="col col-lg-2">  
-                          </div>
-                        </div>
-                        <br></br>
-                        <div className="row ">
-                          <div className="col col-lg-1">  
-                          </div>
-                          <div className="col col-lg-10">
-                            <FileInfoList uploaderUrl={this.state.uploaderUrl}/>
-                          </div>
-                          <div className="col col-lg-1">  
-                          </div>
-                        </div>
-            </div>
-
-
-            </div>}
-            />}
-
-            {!this.state.user && <Route exact path="/" component={FrontPage}/>}
-            
-            {this.state.user && <Route exact path='/Results/:fileInfoId?' render={props =>
-              <div>
-                  <div className="container">
-                        <div className="row ">
-                          
-                          <div className="col col-lg-6">
-                              <MotivationalQuote getTranscript={this.getTranscript}/>
-                          </div>
-                          <div className="col col-lg-6">
-                              <TextFields updateResults={this.updateResults} />
-                              <br></br>
-                              <BarChart data={this.state.data}  />
-                          </div>
-                          
-                        </div>
+              <div className="container">
+                <div className="row ">
+                  <div className="col col-lg-2">
                   </div>
+                  <div className="col col-lg-6">
+                    <Uploader user_id={this.state.user.id} />
+                  </div>
+                  <div className="col col-lg-2">
+                  </div>
+                </div>
+                <br></br>
+                <div className="row ">
+                  <div className="col col-lg-1">
+                  </div>
+                  <div className="col col-lg-10">
+                    <FileInfoList uploaderUrl={this.state.uploaderUrl} />
+                  </div>
+                  <div className="col col-lg-1">
+                  </div>
+                </div>
               </div>
-            }/>}
+            </div>}
+          />}
 
+          {!this.state.user && <Route exact path="/" component={FrontPage} />}
+          {this.state.user && <Route exact path='/Results/:fileInfoId?' render={props =>
+            <div>
+              <div className="container">
+                <div className="row ">
+                  <div className="col col-lg-6">
+                    <MotivationalQuote getTranscript={this.getTranscript} />
+                  </div>
+                  <div className="col col-lg-6">
+                    <TextFields updateResults={this.updateResults} />
+                    <br></br>
+                    <BarChart data={this.state.data} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          } />}
         </Switch>
-
       </Router>
     );
   }
@@ -181,7 +166,7 @@ class App extends Component {
 
 export default App;
 
-{/* { this.state.user ? <div>User: {this.state.user.username} UserID: {this.state.user.id}</div> : null } */}
+{/* { this.state.user ? <div>User: {this.state.user.username} UserID: {this.state.user.id}</div> : null } */ }
 
 
 

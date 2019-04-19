@@ -22,8 +22,6 @@ const styles = theme => ({
   },
 });
 
-
-
 class TranscriptTextBox extends React.Component {
   state = {
     multiline: "Transcribing your audio..."
@@ -35,14 +33,12 @@ class TranscriptTextBox extends React.Component {
     });
   };
 
-
   render() {
     const { classes } = this.props;
 
     return (
       <form className={classes.container} noValidate autoComplete="off">
         
-
         <TextField
           id="outlined-multiline-flexible"
           label="Transcript"

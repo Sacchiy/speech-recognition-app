@@ -5,28 +5,28 @@ import axios from 'axios';
 
 
 class FileInfoList extends React.Component {
-  state = { fileInfoList: [] }
+    state = { fileInfoList: [] }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getUploads();
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if (this.props.uploaderUrl != prevProps.uploaderUrl){
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.uploaderUrl != prevProps.uploaderUrl) {
             this.getUploads();
         }
     }
 
-    getUploads(){
+    getUploads() {
         //get all the files this user has uploaded
         axios.get("/api/fileInfo")
-          .then(response => {
-            this.setState({ fileInfoList: response.data.fileInfoList}); // 'data' object provided by axios
-          }); 
+            .then(response => {
+                this.setState({ fileInfoList: response.data.fileInfoList }); // 'data' object provided by axios
+            });
     }
 
     //Convert from seconds to HR:MM:SS
-    fancyTimeFormat = (time) => {   
+    fancyTimeFormat = (time) => {
         // Hours, minutes and seconds
         var hrs = ~~(time / 3600);
         var mins = ~~((time % 3600) / 60);
@@ -44,42 +44,42 @@ class FileInfoList extends React.Component {
         return ret;
     }
 
-  render() {
+    render() {
 
-     
-    let row = this.state.fileInfoList.map(item  => 
-        <tr key ={item.id}>
-            <td >{item.id}</td>
-            <td >{item.audio_file_name}</td>
-            <td >{this.fancyTimeFormat(item.audio_file_duration)}s</td>
-            <td> <a href={item.link_to_audio}> Play</a></td> 
-            <td>{item.createdAt}</td>
-            <td><Link to={"/results/" + item.revai_job_id}>See Transcript (If Ready)</Link></td>
-        </tr>
-    ) 
 
-    return (
-        <div>
-            <table id="table" className="table table-hover">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">File Name</th>
-                        <th scope="col">Duration</th>
-                        <th scope="col">Audio</th>
-                        <th scope="col">Uploaded</th>
-                        <th scope="col">Status</th>
-                    </tr>
-                </thead>
-                <tbody>
+        let row = this.state.fileInfoList.map(item =>
+            <tr key={item.id}>
+                <td >{item.id}</td>
+                <td >{item.audio_file_name}</td>
+                <td >{this.fancyTimeFormat(item.audio_file_duration)}s</td>
+                <td> <a href={item.link_to_audio}> Play</a></td>
+                <td>{item.createdAt}</td>
+                <td><Link to={"/results/" + item.revai_job_id}>See Transcript (If Ready)</Link></td>
+            </tr>
+        )
 
-                    {row}
-                
-                </tbody>
-            </table>  
-        </div>  
-    )
-  }
+        return (
+            <div>
+                <table id="table" className="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">File Name</th>
+                            <th scope="col">Duration</th>
+                            <th scope="col">Audio</th>
+                            <th scope="col">Uploaded</th>
+                            <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {row}
+
+                    </tbody>
+                </table>
+            </div>
+        )
+    }
 }
 
 export default withRouter(FileInfoList);
