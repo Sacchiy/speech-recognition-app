@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css?family=Croissant+One|Open+Sans|Roboto');
+
 .App {
   text-align: center;
 }
@@ -21,4 +24,53 @@
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+.diagram{
+  text-align: center;
+  margin: auto;
+  width: 80%;
+  /* border: 5px solid #3F51B5; */
+  padding: 40px;
+  border-radius: 25px;
+}
+
+.center{
+    text-align: center;
+    margin: auto;
+    width: 60%;
+    padding: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: thick;
+    color: #3F51B5;
+}
+
+.classes.menubutton{
+  color:white;
+}
+
+.LogIn{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: thick;
+  color: #3F51B5;
+}
+
+.box{
+margin: 5px;
+border: 2px solid #3F51B5;
+border-radius: 5px;
+height: 30px;
+}
+
+#submit{
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #3F51B5;
+  color:white;
+  font-size: 12px;
+  border-radius: 20px;
+  width: 100px;
+}
+
+#table{
+
 }

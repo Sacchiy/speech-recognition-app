@@ -43,7 +43,7 @@ function ButtonAppBar(props) {
       <AppBar position="static">
         <Toolbar>
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
-            <MenuIcon />
+           <NavLink to="/"><MenuIcon/></NavLink>
           </IconButton>
           {!user && <Button color="inherit"><NavLink to="/">Home</NavLink></Button>}
           {user && <Button color="inherit"><NavLink to="/UserHomePage">User Home Page</NavLink></Button>}

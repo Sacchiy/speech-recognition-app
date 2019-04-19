@@ -54,6 +54,7 @@ class Uploader extends Component {
       <div>
         
           To DO: Make matching button to choose file
+          
           <input type="file" ref={this.fileInput} />
           {/* <button onClick={this.uploadFile}>Submit</button> */}
           <UploadButton uploadFile={this.uploadFile}/> 

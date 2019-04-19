@@ -33,16 +33,20 @@ export default class LoginBox extends React.Component {
     }
 
     return (
+      <div className="center">
       <form onSubmit={this.login}>
         <div>
-          Username: <input type="text" name="username" onChange={this.inputChanged}/>
+          <div>Username:</div>
+          <input type="text" className="box" name="username" onChange={this.inputChanged}/>
         </div>
         <div>
-          Password: <input type="password" name="password" onChange={this.inputChanged}/>
+        <div> Password: </div>
+        <input type="password" className="box" name="password" onChange={this.inputChanged}/>
         </div>
-        <input type="submit" value="Register"/>
+        <input type="submit" id="submit" className="box" value="SIGN UP"/>
         {this.state.error && <div>{this.state.error}</div>}
       </form>
+      </div>
     )
   }
 }

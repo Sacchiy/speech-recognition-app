@@ -5,11 +5,9 @@ export default class FrontPage extends React.Component {
   render() {
     return (
       <div>
-        "This is the Front Page - It contains pics and explanations of how the translation
-        service works and you can login here"
+        {/* <LoginBox/> */}
         <br></br>
-        <br></br>
-        <LoginBox/>
+        <div  className="diagram"><img src={ require('./images/Speech-Recognition-Diagram.png') } alt="Speech REcognition Diagram" height= "700px"/></div>
       </div>
     )
   }
