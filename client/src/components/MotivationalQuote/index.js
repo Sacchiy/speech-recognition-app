@@ -12,7 +12,6 @@ const styles = theme => ({
   },
 });
 
-
 class MotivationalQuote extends Component {
   state = {
     transcript: "",
@@ -52,8 +51,6 @@ class MotivationalQuote extends Component {
   }
 
   
-
-
 
   //zTHdxVpTraHX //works
   //m2ti7qTRCYOT

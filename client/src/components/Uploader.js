@@ -59,7 +59,7 @@ class Uploader extends Component {
 
         
           <UploadButton uploadFile={this.uploadFile}/> 
-          
+
       </div>
     )
   }

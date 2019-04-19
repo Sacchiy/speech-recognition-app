@@ -20,9 +20,7 @@ const styles = theme => ({
   },
 });
 
-
 class OutlinedTextFields extends React.Component {
-
 
   handleChange = name => event => {
     this.props.updateResults(event.target.value);

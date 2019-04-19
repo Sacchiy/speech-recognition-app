@@ -7,25 +7,26 @@ import FileInfoListItem from '../FileInfoListItem';
 
 
 class FileInfoList extends React.Component {
-  state = { fileInfoList: [] }
+    state = { fileInfoList: [] }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getUploads();
     }
 
-    componentDidUpdate(prevProps, prevState){
-        if (this.props.uploaderUrl != prevProps.uploaderUrl){
+    componentDidUpdate(prevProps, prevState) {
+        if (this.props.uploaderUrl != prevProps.uploaderUrl) {
             this.getUploads();
         }
     }
 
-    getUploads(){
+    getUploads() {
         //get all the files this user has uploaded
         axios.get("/api/fileInfo")
-          .then(response => {
-            this.setState({ fileInfoList: response.data.fileInfoList}); // 'data' object provided by axios
-          }); 
+            .then(response => {
+                this.setState({ fileInfoList: response.data.fileInfoList }); // 'data' object provided by axios
+            });
     }
+
 
     
 
@@ -59,6 +60,7 @@ class FileInfoList extends React.Component {
         </div>  
     )
   }
+
 }
 
 export default withRouter(FileInfoList);
