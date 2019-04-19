@@ -3,8 +3,6 @@ import axios from 'axios';
 import TranscriptTextBox from '../TranscriptTextBox'
 import { Redirect, withRouter } from 'react-router-dom';
 
-
-
 const styles = theme => ({
   button: {
     margin: theme.spacing.unit,
@@ -14,10 +12,7 @@ const styles = theme => ({
   },
 });
 
-/**
- * Displays a random motivatioal quote from our API
- * 
- */
+
 class MotivationalQuote extends Component {
   state = {
     transcript: "",
@@ -33,20 +28,20 @@ class MotivationalQuote extends Component {
         this.setState({ 
             audioJobID: response.data.fileInfo.revai_job_id,
             fileInfo: response.data
-      });
+        });
+        this.getTranscriptText(response.data.fileInfo.revai_job_id);
     })
   }
 
-
-  submitAudioJob = () => {
-    axios.get("/api/motivation")
-      .then(response => {
-        this.setState({ 
-            audioJobID: response.data.id, 
-            audioJobStatus: response.data.status
-         });
-      });
-  }
+  // submitAudioJob = () => {
+  //   axios.get("/api/motivation")
+  //     .then(response => {
+  //       this.setState({ 
+  //           audioJobID: response.data.id, 
+  //           audioJobStatus: response.data.status
+  //        });
+  //     });
+  // }
 
   getTranscriptText = (audioJobID) => {
     axios.get("/api/motivation/getTranscriptText/" + audioJobID)
@@ -54,32 +49,30 @@ class MotivationalQuote extends Component {
         this.setState({ transcript: response.data})
         this.props.getTranscript(response.data)  //sets the state of transcript to response.data in app.js component
       });
-    
   }
 
-  requestAudioJobStatus = () => {
-    // uses state to pass in the audio job id this.state.audioJobID
-    console.log('hello')
-    console.log(this.state.audioJobID);
-    axios.post("/api/motivation/requestAudioJobStatus" , {audioJobID:this.state.audioJobID} )
-      .then(response => {
-        if (response.data.status === 'transcribed') {
-          this.setState({ audioJobStatus: response.data.status })
-          this.getTranscriptText(response.data.id)
-        } else {
-          console.log('no response');
-          console.log(response.data.status);
-          this.setState({ 
-            audioJobID: response.data.id,  
-            audioJobStatus: response.data.status
-         });
-        }
-      });
-  }
+  // requestAudioJobStatus = () => {
+  //   // uses state to pass in the audio job id this.state.audioJobID
+  //   console.log('hello')
+  //   console.log(this.state.audioJobID);
+  //   axios.post("/api/motivation/requestAudioJobStatus" , {audioJobID:this.state.audioJobID} )
+  //     .then(response => {
+  //       if (response.data.status === 'transcribed') {
+  //         this.setState({ audioJobStatus: response.data.status })
+  //         this.getTranscriptText(response.data.id)
+  //       } else {
+  //         console.log('no response');
+  //         console.log(response.data.status);
+  //         this.setState({ 
+  //           audioJobID: response.data.id,  
+  //           audioJobStatus: response.data.status
+  //        });
+  //       }
+  //     });
+  // }
 
-  
 
-  
+
   //zTHdxVpTraHX //works
   //m2ti7qTRCYOT
   //IJq1HL1Xd9pj //fails
@@ -90,10 +83,10 @@ class MotivationalQuote extends Component {
     
     return (
       <span>
-        <p> Audio Job ID: {this.state.audioJobID} </p>
-        <p> Audio Job Status:{this.state.audioJobStatus} </p>
-        <button onClick={() => this.submitAudioJob()}>submitAudioJob</button> 
-        <button onClick={() => this.requestAudioJobStatus()}>audioJobStatus</button> 
+        {/* <p> Audio Job ID: {this.state.audioJobID} </p> */}
+        {/* <p> Audio Job Status:{this.state.audioJobStatus} </p> */}
+        {/* <button onClick={() => this.submitAudioJob()}>submitAudioJob</button>  */}
+        {/* <button onClick={() => this.requestAudioJobStatus()}>audioJobStatus</button>  */}
         <TranscriptTextBox transcript = {this.state.transcript}/>
       </span>
     );

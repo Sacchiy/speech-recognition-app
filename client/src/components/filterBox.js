@@ -27,6 +27,11 @@ class OutlinedTextFields extends React.Component {
   handleChange = name => event => {
     this.props.updateResults(event.target.value);
   };
+  
+  //clear text box 
+  componentWillMount(){
+    this.props.updateResults("");
+  }
 
   render() {
     const { classes } = this.props;
@@ -36,9 +41,10 @@ class OutlinedTextFields extends React.Component {
        
         <TextField
           id="outlined-textarea"
-          label="Words to count"
-          placeholder="Words to count"
+          label="Type the words you want to count"
+          placeholder="Type the words you want to count"
           multiline
+          fullWidth
           className={classes.textField}
           margin="normal"
           variant="outlined"

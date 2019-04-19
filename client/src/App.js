@@ -24,9 +24,11 @@ class App extends Component {
     words: [],
     data: [],
     transcript: "Your transcript will appear here",
-    user: null
+    user: null,
+    fileList: null
   };
 
+  
   //Authentication Methods
 
   componentDidMount() {
@@ -102,6 +104,8 @@ class App extends Component {
     });    
   }
 
+  
+
   render() {
   
     return (
@@ -116,11 +120,35 @@ class App extends Component {
             {!this.state.user && <Route path="/LoginPage/:reason?" component={LoginPage}/>}
             {this.state.user && <Route exact path="/UserHomePage" render={props =>
             <div>
-            <Uploader user_id={this.state.user.id}/>
-            <FileInfoList/>
+            
+            <div class="container">
+                        <div class="row ">
+                          <div class="col col-lg-2">  
+                          </div>
+                          <div class="col col-lg-6">
+                            <Uploader user_id={this.state.user.id} />
+                          </div>
+                          <div class="col col-lg-2">  
+                          </div>
+                        </div>
+                        <br></br>
+                        <div class="row ">
+                          <div class="col col-lg-1">  
+                          </div>
+                          <div class="col col-lg-10">
+                            <FileInfoList />
+                          </div>
+                          <div class="col col-lg-1">  
+                          </div>
+                        </div>
+            </div>
+
+
             </div>}
             />}
+
             {!this.state.user && <Route exact path="/" component={FrontPage}/>}
+            
             {this.state.user && <Route exact path='/Results/:fileInfoId?' render={props =>
               <div>
                   <div class="container">
@@ -131,13 +159,15 @@ class App extends Component {
                           </div>
                           <div class="col col-lg-6">
                               <TextFields updateResults={this.updateResults} />
+                              <br></br>
                               <BarChart data={this.state.data}  />
                           </div>
                           
                         </div>
-                      </div>
+                  </div>
               </div>
             }/>}
+
         </Switch>
 
       </Router>

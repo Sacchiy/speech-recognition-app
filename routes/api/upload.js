@@ -37,29 +37,26 @@ router.post('/', multerUpload.single('file'), (req, res) => {
         console.log("Error in cloudinary.uploader.upload_stream\n", error);
         return;
       }
-      //console.log("Cloudinary audio info: ", result.audio);
+      console.log("Cloudinary audio info: ", result);
       // If you want to see all the data that Cloudinary comes back with
       // console.log(result);
 
       //console.log('Cloudinary url', result.url);
-      const link = result.url;
-      let job = await client.submitJobUrl(link);
-      //console.log('Cloudinary url!!!', link);
-      // router.post("/add", (req, res) => {
-      // const link = req.body.student;
-      // console.log("Got student!", student);
-      // const id = 1
+      const link = result.url;  //result is cloudinary object
+      let job = await client.submitJobUrl(link); // send file to REVAI
+      
       db.UserData.create({ user_id: req.body.user_id,
-         link_to_audio: link ,
+          link_to_audio: link ,
           audio_file_name: req.file.originalname,
+          audio_file_duration: result.duration,
           revai_job_id: job.id
          })
         .then(() => {
-          res.json({ urlReceived: link});
+          res.json({ urlReceived: link , revai_job_id : job.id, job_status : job.status});  //send URL to client for display
           console.log("mySQL table" + urlReceived);
         })
       // Send back the working URL for the client to display.
-      res.json({ cdn_url: result.url });
+      //res.json({ cdn_url: result.url });
     }
 });
 

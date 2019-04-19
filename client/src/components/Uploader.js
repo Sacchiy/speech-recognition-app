@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import UploadButton from './Buttons';
+import FileInfoList from "./FileInfoList";
 
 class Uploader extends Component {
-  state = { cdn_url: null }
+  state = { cdn_url: null, job_status:null }
 
   // File input fields cannot be controlled by React since React cannot set their value
   // So we will hold a reference to it so we can access the field later
@@ -11,6 +13,7 @@ class Uploader extends Component {
   fileInput = React.createRef();
   
   uploadFile = () => {
+    
     if (!this.fileInput.current.files.length) {
       console.log('No file was selected');
       return;
@@ -32,23 +35,32 @@ class Uploader extends Component {
 
     console.log("data" + data);
 
-    // Send it to our upload API route
+    // Send audio file link to our upload API route 
+    // which a) uploads to cloudinary and Makes call to REVai and returns
+    // cloudinary link and revai job status
     axios.post('/api/upload', data).then((response) => {
       this.setState({
-        cdn_url: response.data.cdn_url
+        cdn_url: response.data.urlReceived,//cdn_url
+        job_status: response.data.job_status
       })
+      
+      window.location.reload();
     })
   }
+  //urlReceived
     
   render() {
     return(
       <div>
-        This is the UPLOADER in User Home Page
-        <div>
-          <input type="file" ref={this.fileInput}/>
-          <button onClick={this.uploadFile}>Submit</button>
-        </div>
-        {this.state.cdn_url && <a href={this.state.cdn_url}>CDN Link</a>}  
+        
+          To DO: Make matching button to choose file
+          <input type="file" ref={this.fileInput} />
+          {/* <button onClick={this.uploadFile}>Submit</button> */}
+          <UploadButton uploadFile={this.uploadFile}/> 
+          To DO: Make transition to load table automatic
+          {this.state.cdn_url && <a href={this.state.cdn_url}>CDN Link</a> }  
+          {this.state.job_status}
+          {/* <FileInfoList/>  can we put file info list and call it from here when upload?*/}
       </div>
     )
   }
