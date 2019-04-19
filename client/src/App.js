@@ -62,9 +62,11 @@ class App extends Component {
 
   }
 
+
   uploaderUrlChanged = url => {
     this.setState({ uploaderUrl: url });
   }
+
 
   //Receives a string with transcript and string with words to search
   wordCount = (text, words) => {
@@ -117,19 +119,52 @@ class App extends Component {
           {!this.state.user && <Route path="/LoginPage/:reason?" component={LoginPage} />}
           {this.state.user && <Route exact path="/UserHomePage" render={props =>
             <div>
-              <div className="container">
-                <div className="row ">
-                  <div className="col col-lg-2">
-                  </div>
-                  <div className="col col-lg-6">
-                    <Uploader user_id={this.state.user.id} />
-                  </div>
-                  <div className="col col-lg-2">
-                  </div>
-                </div>
-                <br></br>
-                <div className="row ">
-                  <div className="col col-lg-1">
+
+            
+            <div class="container">
+                        <div class="row ">
+                          <div class="col col-lg-2">  
+                          </div>
+                          <div class="col col-lg-6">
+                            <Uploader user_id={this.state.user.id} />
+                          </div>
+                          <div class="col col-lg-2">  
+                          </div>
+                        </div>
+                        <br></br>
+                        <div class="row ">
+                          <div class="col col-lg-1">  
+                          </div>
+                          <div class="col col-lg-10">
+                            <FileInfoList />
+                          </div>
+                          <div class="col col-lg-1">  
+                          </div>
+                        </div>
+            </div>
+
+
+            </div>}
+            />}
+
+            {!this.state.user && <Route exact path="/" component={FrontPage}/>}
+            
+            {this.state.user && <Route exact path='/Results/:fileInfoId?' render={props =>
+              <div>
+                  <div class="container">
+                        <div class="row ">
+                          
+                          <div class="col col-lg-6">
+                              <MotivationalQuote getTranscript={this.getTranscript}/>
+                          </div>
+                          <div class="col col-lg-6">
+                              <TextFields updateResults={this.updateResults} />
+                              <br></br>
+                              <BarChart data={this.state.data}  />
+                          </div>
+                          
+                        </div>
+
                   </div>
                   <div className="col col-lg-10">
                     <FileInfoList uploaderUrl={this.state.uploaderUrl} />

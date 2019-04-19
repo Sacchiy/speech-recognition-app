@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { withRouter } from "react-router";
 import { NavLink } from 'react-router-dom';
 
+
 const styles = {
   root: {
     flexGrow: 1,
@@ -44,12 +45,14 @@ function ButtonAppBar(props) {
           <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
            <NavLink to="/"><MenuIcon/></NavLink>
           </IconButton>
-          {!user && <Button color="inherit"><NavLink to="/">Home</NavLink></Button>}
-          {user && <Button color="inherit"><NavLink to="/UserHomePage">User Home Page</NavLink></Button>}
-          {/* {user && <Button color="inherit"><NavLink to="/Results">Results</NavLink></Button>} */}
-          {!user && <Button color="inherit"><NavLink to="/RegistrationPage">Register</NavLink></Button>}
-          {user && <a href="#" className="navlink" onClick={logoutCheck}>Logout</a>}
-          { user && <Button color="inherit">{user.username}</Button> }
+          
+          
+          {!user && <Button component={NavLink} to="/">Home</Button>}
+          {user && <Button component={NavLink} to="/UserHomePage">{user.username} Home Page</Button>}
+          {!user && <Button component={NavLink} to="/RegistrationPage">Register</Button>}
+          {user && <Button component={NavLink} to="/RegistrationPage" onClick={logoutCheck}>Logout</Button>}
+          {/* { user && <Button color="inherit">{user.username}</Button> } */}
+          
         </Toolbar>  
       </AppBar>
     </div>

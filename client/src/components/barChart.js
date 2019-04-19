@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
 import {
   ComposedChart, Line, Area, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
-  Legend,
+  Legend, ResponsiveContainer
 } from 'recharts';
+
 
 export default class BarChart extends PureComponent {
   static jsfiddleUrl = 'https://jsfiddle.net/alidingling/shjsn5su/';
@@ -10,11 +11,12 @@ export default class BarChart extends PureComponent {
   render() {
     
     return (
-      
+    
+    <ResponsiveContainer width={500} height={330}>
       <ComposedChart
         layout="vertical"
-        width={500}
-        height={330}
+        //width={500}
+        //height={330}
         data={this.props.data}
         margin={{
           top: 20, right: 20, bottom: 0, left: 20,
@@ -29,6 +31,9 @@ export default class BarChart extends PureComponent {
         <Bar name="# of counts" dataKey="pv" barSize={20} fill="#413ea0" />
         
       </ComposedChart>
+    </ResponsiveContainer>
+
+
     );
   }
 }

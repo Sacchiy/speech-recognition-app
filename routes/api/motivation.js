@@ -31,10 +31,14 @@ router.route("/").get(async function(req, res) {
 });
 
 router.route("/requestAudioJobStatus").post(async function(req, res) {
-  // Audio job ID sent in body of the  POST request from client: req.body.audioJobID
-  const client = new RevAiApiClient(accessToken);
-  var jobDetails = await client.getJobDetails(req.body.audioJobID); // This one is transcrived and works always'zTHdxVpTraHX' // does not work with new token
-  res.json(jobDetails);
+  try {
+    // Audio job ID sent in body of the  POST request from client: req.body.audioJobID
+    const client = new RevAiApiClient(accessToken);
+    var jobDetails = await client.getJobDetails(req.body.audioJobID); // This one is transcrived and works always'zTHdxVpTraHX' // does not work with new token
+    res.json(jobDetails);
+  } catch(error) {
+    console.log('This is /requestAudioJobStatus :  ',error);
+  }
 });
 
 router.route("/getTranscriptText/:audioJobID").get(async function(req, res) {
