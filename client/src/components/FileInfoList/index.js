@@ -2,6 +2,8 @@ import React from 'react';
 import { Redirect, withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import FileInfoListItem from '../FileInfoListItem';
+
 
 
 class FileInfoList extends React.Component {
@@ -25,37 +27,14 @@ class FileInfoList extends React.Component {
           }); 
     }
 
-    //Convert from seconds to HR:MM:SS
-    fancyTimeFormat = (time) => {   
-        // Hours, minutes and seconds
-        var hrs = ~~(time / 3600);
-        var mins = ~~((time % 3600) / 60);
-        var secs = ~~time % 60;
-
-        // Output like "1:01" or "4:03:59" or "123:03:59"
-        var ret = "";
-
-        if (hrs > 0) {
-            ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-        }
-
-        ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-        ret += "" + secs;
-        return ret;
-    }
+    
 
   render() {
 
      
-    let row = this.state.fileInfoList.map(item  => 
-        <tr key ={item.id}>
-            <td >{item.id}</td>
-            <td >{item.audio_file_name}</td>
-            <td >{this.fancyTimeFormat(item.audio_file_duration)}s</td>
-            <td> <a href={item.link_to_audio}> Play</a></td> 
-            <td>{item.createdAt}</td>
-            <td><Link to={"/results/" + item.revai_job_id}>See Transcript (If Ready)</Link></td>
-        </tr>
+    let row = this.state.fileInfoList.map((item,index)  => 
+        <FileInfoListItem key ={index+1} item={item} index={index} />
+        
     ) 
 
     return (

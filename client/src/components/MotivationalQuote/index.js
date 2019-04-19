@@ -51,25 +51,7 @@ class MotivationalQuote extends Component {
       });
   }
 
-  // requestAudioJobStatus = () => {
-  //   // uses state to pass in the audio job id this.state.audioJobID
-  //   console.log('hello')
-  //   console.log(this.state.audioJobID);
-  //   axios.post("/api/motivation/requestAudioJobStatus" , {audioJobID:this.state.audioJobID} )
-  //     .then(response => {
-  //       if (response.data.status === 'transcribed') {
-  //         this.setState({ audioJobStatus: response.data.status })
-  //         this.getTranscriptText(response.data.id)
-  //       } else {
-  //         console.log('no response');
-  //         console.log(response.data.status);
-  //         this.setState({ 
-  //           audioJobID: response.data.id,  
-  //           audioJobStatus: response.data.status
-  //        });
-  //       }
-  //     });
-  // }
+  
 
 
 
