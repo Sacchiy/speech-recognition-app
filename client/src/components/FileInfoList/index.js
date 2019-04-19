@@ -39,7 +39,7 @@ class FileInfoList extends React.Component {
 
     return (
         <div>
-            <table class="table table-hover">
+            <table id="table" className="table table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>

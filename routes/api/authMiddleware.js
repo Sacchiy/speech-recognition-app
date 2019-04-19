@@ -12,7 +12,7 @@ function authMiddleware(req, res, next) {
       const authToken = req.cookies.auth_token;
   
       if (!userId || !authToken) {
-        throw new Error("Invalid auth cookie");
+        throw new Error("Auth cookie not found. User is not logged in.");
       }
   
       // Security, make sure that our cookies match what is in the session
@@ -24,7 +24,7 @@ function authMiddleware(req, res, next) {
       }
   
     } catch(err) {
-      console.log("authMiddleware issue", err);
+      console.log(err.message);
   
       // 401 - Unauthorized
       res.status(401).json({ error: err.message });

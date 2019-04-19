@@ -8,11 +8,9 @@ export default class LoginPage extends React.Component {
     console.log(this.props.match);
     return (
       <div>
-        <br/>
         Login Page
         <br/>
         { newUser && <div>Your account has been created. Login to continue</div> }
-        <br/>
         <div>
           <LoginBox newUser={newUser}/>
         </div>

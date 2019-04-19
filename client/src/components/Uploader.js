@@ -54,6 +54,7 @@ class Uploader extends Component {
     return(
       <div>
         
+
           <input type="file" ref={this.fileInput} />
 
         
