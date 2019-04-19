@@ -3,6 +3,7 @@ import axios from 'axios';
 import UploadButton from './Buttons';
 import FileInfoList from "./FileInfoList";
 
+
 class Uploader extends Component {
   state = { cdn_url: null, job_status:null }
 
@@ -53,14 +54,11 @@ class Uploader extends Component {
     return(
       <div>
         
-          To DO: Make matching button to choose file
           <input type="file" ref={this.fileInput} />
-          {/* <button onClick={this.uploadFile}>Submit</button> */}
+
+        
           <UploadButton uploadFile={this.uploadFile}/> 
-          To DO: Make transition to load table automatic
-          {this.state.cdn_url && <a href={this.state.cdn_url}>CDN Link</a> }  
-          {this.state.job_status}
-          {/* <FileInfoList/>  can we put file info list and call it from here when upload?*/}
+          
       </div>
     )
   }
