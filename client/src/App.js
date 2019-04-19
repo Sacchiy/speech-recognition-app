@@ -172,8 +172,8 @@ class App extends Component {
                   <div className="col col-lg-1">
                   </div>
                 </div>
-              </div>
-            </div>}
+//               </div>
+            }/>}
           />}
 
           {!this.state.user && <Route exact path="/" component={FrontPage} />}
