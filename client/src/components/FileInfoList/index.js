@@ -7,15 +7,23 @@ import axios from 'axios';
 class FileInfoList extends React.Component {
   state = { fileInfoList: [] }
 
-    componentDidMount( ){
+    componentDidMount(){
+        this.getUploads();
+    }
+
+    componentDidUpdate(prevProps, prevState){
+        if (this.props.uploaderUrl != prevProps.uploaderUrl){
+            this.getUploads();
+        }
+    }
+
+    getUploads(){
         //get all the files this user has uploaded
         axios.get("/api/fileInfo")
           .then(response => {
             this.setState({ fileInfoList: response.data.fileInfoList}); // 'data' object provided by axios
           }); 
     }
-
-    
 
     //Convert from seconds to HR:MM:SS
     fancyTimeFormat = (time) => {   
