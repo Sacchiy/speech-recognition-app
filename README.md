@@ -11,7 +11,6 @@ These instructions will get you a copy of the project up and running on your loc
 Start by installing front and backend dependencies. While in this directory, run the following command:
 ```
 npm install
-
 ```
 While waiting for the dependencies to install, create the MySQL database by running the `motivational_quotes_schema.sql` file inside the `seeds` folder.
 
@@ -84,17 +83,17 @@ Add additional notes about how to deploy this on a live system
 
 ## Built With
 
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
+* [](http:) - The web framework used
+* [](https:) - Dependency Management
+* [](https:) - Used to generate RSS Feeds
 
 ## Contributing
 
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
+Please read [CONTRIBUTING.md]() for details on our code of conduct, and the process for submitting pull requests to us.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Sacchiy/speech-recognition-app/tags). 
+We use [](http:) for versioning. For the versions available, see the [tags on this repository](https://github.com/Sacchiy/speech-recognition-app/tags). 
 
 ## Authors
 
