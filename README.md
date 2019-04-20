@@ -1,4 +1,4 @@
-# Project Title
+# Speech Recognition App
 
 One Paragraph of project description goes here
 
@@ -34,7 +34,11 @@ End with an example of getting some data out of the system or using it for a lit
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+in your terminal/gitbash, enter
+
+npm start
+
+to run the app
 
 ### Break down into end to end tests
 
@@ -72,7 +76,7 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Federico, Kevin, Sachiko** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
 
 See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
 
