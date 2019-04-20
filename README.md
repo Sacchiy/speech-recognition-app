@@ -6,13 +6,35 @@ One Paragraph of project description goes here
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-### Prerequisites
+### Starting the app locally
 
-What things you need to install the software and how to install them
+Start by installing front and backend dependencies. While in this directory, run the following command:
+```
+npm install
 
 ```
-Give examples
+While waiting for the dependencies to install, create the MySQL database by running the `motivational_quotes_schema.sql` file inside the `seeds` folder.
+
+To see this example boilerplate in action, create a `.env` file in the root of this project with the following inside:
+DB_USERNAME=root
+DB_PASSWORD=whateveryourpasswordis
+DB_NAME=motivation_development
+DB_HOST=127.0.0.1
+
+REV_AI_ACCESS_TOKEN=yourRev.aiaccesstoken
+
+After both installations complete, run the following command in your terminal:
+
 ```
+npm run seed
+```
+
+Then:
+
+```
+npm start
+```
+Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
 
 ### Installing
 
@@ -72,17 +94,17 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/Sacchiy/speech-recognition-app/tags). 
 
 ## Authors
 
-* **Federico, Kevin, Sachiko** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Federico, Kevin, Sachiko** - *Initial work* - [Speech Recognition App] https://github.com/Sacchiy/speech-recognition-app/
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/Sacchiy/speech-recognition-app/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the xxxx License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
 
