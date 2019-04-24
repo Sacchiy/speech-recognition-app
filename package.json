@@ -33,5 +33,13 @@
     "react-virtualized": "^9.21.0",
     "revai-node-sdk": "^1.1.0",
     "sequelize": "^5.2.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sacchiy/speech-recognition-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Sacchiy/speech-recognition-app/issues"
+  },
+  "homepage": "https://github.com/Sacchiy/speech-recognition-app#readme"
 }
