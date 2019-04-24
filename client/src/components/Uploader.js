@@ -2,10 +2,28 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import UploadButton from './Buttons';
 import FileInfoList from "./FileInfoList";
+import './upload.css'
+import img from './upload2.png'
 
 
 class Uploader extends Component {
-  state = { cdn_url: null, job_status:null }
+  state = { cdn_url: null, job_status:null, fileName: '' }
+
+  onChange = e => {
+
+    switch (e.target.name) {
+      // Updated this
+      case 'selectedFile':
+        if(e.target.files.length > 0) {
+            // Accessed .name from file 
+            this.setState({ fileName: e.target.files[0].name });
+            console.log(e.target.files[0].name)
+        }
+      break;
+      default:
+        this.setState({ [e.target.name]: e.target.value });
+     }
+  };
 
   // File input fields cannot be controlled by React since React cannot set their value
   // So we will hold a reference to it so we can access the field later
@@ -51,13 +69,21 @@ class Uploader extends Component {
   //urlReceived
     
   render() {
+    const { fileName } = this.state;
+    let file2 = null;
+
+    file2 = fileName 
+    ? ( <span>     File Selected - {fileName}</span>) 
+    : ( <span>     Select an audio file...</span> );
     return(
       <div>
         
 
-          <input type="file" ref={this.fileInput} />
-
-        
+          <label className="custom-file-upload">
+          <img src={img} />
+          {file2}
+          <input className="hidden" type="file" name="selectedFile" ref={this.fileInput} onChange={ (event) => this.onChange(event) } />
+          </label>
           <UploadButton uploadFile={this.uploadFile}/> 
 
       </div>
