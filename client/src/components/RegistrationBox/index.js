@@ -32,14 +32,6 @@ export default class LoginBox extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   }
 
-  // inputChanged = event => {
-  //   if (event.target.value < 5){
-  //     this.setState({ [event.target.name]: event.target.value });
-  //   } else {
-  //     alert("too short!")
-  //   }
-  // }
-
   render() {
     if (this.state.loggedIn) {
       return <Redirect to="/UserHomePage"/>;
