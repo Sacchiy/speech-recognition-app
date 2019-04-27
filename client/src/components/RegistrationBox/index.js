@@ -22,12 +22,15 @@ export default class LoginBox extends React.Component {
         .catch(err => {
           this.setState({ error: err.message });
         })
-    } else if(this.state.username.length <3 && this.state.password.length > 7) {
+    } else if(this.state.username.length < 3 && this.state.password.length > 7) {
       alert('Your username must be longer than 3 characters.')
-    } else if(this.state.username.length >3 && this.state.password.length < 7){
+    } else if(this.state.username.length > 3 && this.state.password.length < 7){
       alert('Your password must be longer than 7 characters.')
+    } else if (this.state.username.length < 3 && this.state.password.length < 7){
+      alert('Your username must be longer than 3 characters and your password must be longer than 7 characters.')
     }
   }
+
   inputChanged = event => {
     this.setState({ [event.target.name]: event.target.value });
   }
